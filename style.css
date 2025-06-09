@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #262626;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.controls {
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.controls label, .controls select, .controls textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    height: 120px;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.preview {
+    width: 100%;
+    max-width: 600px;
+}
+
+.preview-box {
+    background-color: #333;
+    padding: 1rem;
+    border: 1px solid #555;
+    min-height: 100px;
+    white-space: pre-wrap;
+    font-family: sans-serif;
+}

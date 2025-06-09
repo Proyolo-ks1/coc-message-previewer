@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clash of Clans Message Previewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Clash of Clans Message Previewer</h1>
+    </header>
+
+    <main>
+        <div class="controls">
+            <label for="messageType">Select message type:</label>
+            <select id="messageType">
+                <option value="clanmail">Clan Mail</option>
+                <option value="clandescription">Clan Description</option>
+                <option value="clanwarletter">Clan War Letter</option>
+                <option value="trooprequest">Troop Request</option>
+                <option value="chatmessage">Chat Message</option>
+                <option value="challenge">Challenge</option>
+            </select>
+
+            <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+        </div>
+
+        <div class="preview">
+            <h2>Preview</h2>
+            <div id="previewBox" class="preview-box">
+                Your message will appear here...
+            </div>
+        </div>
+
+        <details style="margin-top:2rem;">
+            <summary>ℹ️ Formatting Tips</summary>
+            <p>Use <code>&lt;c2&gt;your text&lt;/c&gt;</code> for red text.<br>
+            Use <code>&lt;c3EA49A&gt;your text&lt;/c&gt;</code> for custom colors (hex).</p>
+        </details>
+    </main>
+
+    <footer>
+        <p>Tool created by Proyolo/ks1</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
