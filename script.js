@@ -1,3 +1,17 @@
+const input = document.getElementById("messageInput");
+const warning = document.getElementById("charWarning");
+
+input.addEventListener("input", () => {
+    if (input.value.length > 128) {
+        input.style.color = "red"; // alles rood
+        warning.style.display = "block";
+    } else {
+        input.style.color = "";    // terug naar standaardkleur
+        warning.style.display = "none";
+    }
+    updatePreview();
+});
+
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("messageInput").addEventListener("input", updatePreview);
     updatePreview();
@@ -37,24 +51,24 @@ dropdownSelected.addEventListener('click', () => {
     dropdownOptions.classList.toggle('show');
 });
 
-options.forEach(option => {
-    option.addEventListener('click', () => {
-        // Remove previous selection
-        dropdownOptions.querySelector('li.selected').classList.remove('selected');
+// options.forEach(option => {
+//     option.addEventListener('click', () => {
+//         // Remove previous selection
+//         dropdownOptions.querySelector('li.selected').classList.remove('selected');
 
-        // Mark this option as selected
-        option.classList.add('selected');
+//         // Mark this option as selected
+//         option.classList.add('selected');
 
-        // Update displayed value
-        dropdownSelected.textContent = option.textContent;
+//         // Update displayed value
+//         dropdownSelected.textContent = option.textContent;
 
-        // Close options
-        dropdownOptions.classList.remove('show');
+//         // Close options
+//         dropdownOptions.classList.remove('show');
 
-        // Update preview because the message type changed
-        updatePreview();
-    });
-});
+//         // Update preview because the message type changed
+//         updatePreview();
+//     });
+// });
 
 // Close dropdown if clicked outside
 document.addEventListener('click', (e) => {
@@ -70,9 +84,18 @@ function getSelectedMessageType() {
 
 function updatePreview() {
     const input = document.getElementById("messageInput").value;
-    const messageType = getSelectedMessageType();
+    const maxLength = 128;
 
-    let formatted = formatColors(input);
+    let displayText = input;
+    let isTruncated = false;
+
+    if (input.length > maxLength) {
+        displayText = input.substring(0, maxLength);
+        isTruncated = true;
+    }
+
+    let formatted = formatColors(displayText);
+    const messageType = getSelectedMessageType();
     
     const nameOther = 'Other Guy';
     const nameMe = 'You'; 
