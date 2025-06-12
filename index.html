@@ -7,20 +7,28 @@
 </head>
 <body>
     <header>
-        <h1>Clash of Clans Message Previewer</h1>
+        <a href="https://clashofclans.com" target="_blank" rel="noopener">
+            <img src="images/Clash of Clans logo.png" alt="Clash of Clans Logo">
+        </a>
+        <div class="header-text">
+            <h1>Clash of Clans Message Previewer</h1>
+            <span>Fan-made tool (unofficial)</span>
+        </div>
     </header>
-
     <main>
         <div class="controls">
-            <label for="messageType">Select message type:</label>
-            <select id="messageType">
-                <option value="clanmail">Clan Mail</option>
-                <option value="clandescription">Clan Description</option>
-                <option value="clanwarletter">Clan War Letter</option>
-                <option value="trooprequest">Troop Request</option>
-                <option value="chatmessage">Chat Message</option>
-                <option value="challenge">Challenge</option>
-            </select>
+            <div class="custom-dropdown">
+                <label>Select message type:</label>
+                <div class="dropdown-selected" tabindex="0">Chat Message</div>
+                <ul class="dropdown-options" tabindex="-1" aria-hidden="true">
+                    <li data-value="chatmessage" class="selected">Chat Message</li>
+                    <li data-value="clanmail">Clan Mail</li>
+                    <li data-value="clandescription">Clan Description</li>
+                    <li data-value="clanwarletter">Clan War Letter</li>
+                    <li data-value="trooprequest">Troop Request</li>
+                    <li data-value="challenge">Challenge</li>
+                </ul>
+            </div>
 
             <textarea id="messageInput" placeholder="Type your message here..."></textarea>
         </div>
@@ -40,9 +48,17 @@
     </main>
 
     <footer>
-        <p>Tool created by Proyolo/ks1</p>
+        <p>
+            Tool created by Proyolo-ks1 — unofficial and not affiliated with or endorsed by Supercell or Clash of Clans.  
+            This material is fan-made and is not an official Supercell product.  
+            For Supercell's fan content rules, see <a href="https://supercell.com/fan-content-policy" target="_blank" rel="noopener">Supercell Fan Content Policy</a>.
+        </p>
+        <p>
+            <a href="https://github.com/Proyolo-ks1/coc-message-previewer/issues" target="_blank" rel="noopener">
+            Report bugs or suggest features
+            </a>
+        </p>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
