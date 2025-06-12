@@ -76,7 +76,7 @@ function updatePreview() {
     
     const nameOther = 'Other Guy';
     const nameMe = 'You'; 
-    const role = 'Leader';
+    const role = 'Co-Leader';
     const timeAgo = '10m';
     const pinned = false;
 
