@@ -1,0 +1,7 @@
+$background-dark: #1a1a1a;
+$text-light: #f0f0f0;
+
+body {
+  background-color: $background-dark;
+  color: $text-light;
+}

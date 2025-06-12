@@ -1,4 +1,18 @@
-
+:root {
+    --placeholder1:#ff0;
+    --placeholder2:#f0f;
+    --placeholder3:#0ff;
+    --chat-background: #413b38;
+    --chat-border: #504f48;
+    --chat-message-me-background: #5f5651;
+    --chat-message-me-name: #92ee4d;
+    --chat-message-other-background: #34302e;
+    --chat-message-other-name: #bead87;
+    --chat-message-role: #a1a198;
+    --chat-message-default-text: #ffffff;
+    --chat-message-age: #a2a299;
+    --chat-message-pinned: #2a78d6;
+}
 
 @font-face {
     font-family: 'Clash';
@@ -13,6 +27,14 @@
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Panton Trail';
+    src: url('fonts/Panton-Trial-Black.ttf') format('truetype');
+    font-weight: 900 ;
+    font-style: normal;
+}
+
 
 html, body {
     height: 100%;
@@ -166,7 +188,7 @@ textarea {
     height: 120px;
     padding: 0.5rem;
     font-size: 1rem;
-    font-family: 'Clash', sans-serif;
+    font-family: 'Panton Trail', sans-serif;
 }
 
 .preview {
@@ -175,23 +197,131 @@ textarea {
 }
 
 .preview-box {
-    background-color: #403a37;
     padding: 1rem;
-    border: 1px solid #555;
     min-height: 100px;
-    white-space: pre-wrap;
-    font-family: 'Clash', sans-serif;
-}
-
-.preview-box > div {
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    background-color: #000000;
 }
 
 /* MARK: Chat Message
 */
+
+.clan-chat {
+    /* border: 5px solid var(--placeholder1); */
+    border-right: 5px solid var(--chat-border);
+    background-color: var(--chat-background);
+    padding: 1rem;
+}
+
+/* GENERAL MESSAGE */
 .preview-chat-message {
-    background-color: #5f5651;
-    border-left: 5px solid #ffaa00;
+    /* border: 5px solid var(--placeholder2); */
+    max-width: 80%;
+}
+
+.preview-chat-message .message-player {
+    /* border: 5px solid var(--placeholder3); */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 1rem;
+}
+
+.preview-chat-message .message-player-league-icon {
+    font-size: 1rem;
+    max-height: 3rem;
+}
+
+.preview-chat-message .message-player-name {
+    font-size: 1.25rem;
+    font-family: 'Panton Trail', sans-serif;
+    letter-spacing: 0.03em;
+}
+
+.preview-chat-message .chat-message-bubble {
+    /* border: 5px solid var(--chat-message-pinned); */
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    position: relative; /* relevant for triangles */
+}
+
+.preview-chat-message .message-bubble-role {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--chat-message-role);
+}
+
+.preview-chat-message .message-bubble-body {
+    font-size: 1rem;
+    word-wrap: break-word;
+    color: var(--chat-message-default-text);
+    font-family: 'Panton Trail', sans-serif;
+    letter-spacing: 0.03em;
+}
+
+.preview-chat-message .message-bubble-age {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--chat-message-age);
+    margin-top: 0.4rem;
+}
+
+.preview-chat-message-other .message-player-name {
+    text-align: left;
+    color: var(--chat-message-other-name);
+}
+
+/* OTHERS MESSAGE */
+.preview-chat-message-other {
+    margin-right: auto;
+}
+
+.preview-chat-message-bubble-other {
+    background-color: var(--chat-message-other-background);
+}
+
+.preview-chat-message-name {
+    color: var(--chat-message-other-name);
+}
+
+.preview-chat-message-bubble-other .message-age {
+    color: var(--chat-message-age);
+}
+
+.preview-chat-message-bubble-other::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--chat-message-other-background);
+}
+
+/* YOUR MESSAGE */
+.preview-chat-message-me {
+    margin-left: auto;
+}
+
+.preview-chat-message-me .chat-message-bubble {
+    background-color: var(--chat-message-me-background);
+}
+
+.preview-chat-message-me .message-player-name {
+    color: var(--chat-message-me-name);
+}
+
+.preview-chat-message-bubble-me::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid var(--chat-message-me-background); /* or #5f5651 */
 }
 
 /* MARK: Clan Mail

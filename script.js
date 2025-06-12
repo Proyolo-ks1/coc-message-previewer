@@ -5,7 +5,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // # MARK: Preview
 function formatColors(text) {
-    return text.replace(/<c([0-9A-Fa-f#]{1,6})>([\s\S]*?)<\/c>/g, (match, colorCode, content) => {
+    const withLineBreaks = text.replace(/\n/g, "<br>");
+    return withLineBreaks.replace(/<c([0-9A-Fa-f#]{1,6})>([\s\S]*?)<\/c>/g, (match, colorCode, content) => {
         const presetColors = {
             "0": "#000000", // black
             "1": "#FFFFFF", // white
@@ -72,25 +73,51 @@ function updatePreview() {
     const messageType = getSelectedMessageType();
 
     let formatted = formatColors(input);
+    
+    const nameOther = 'Other Guy';
+    const nameMe = 'You'; 
+    const role = 'Leader';
+    const timeAgo = '10m';
+    const pinned = false;
 
     // Customize preview depending on messageType
     switch(messageType) {
         case 'chatmessage':
             formatted = `
-                <h3>Clan Description</h3>
-                <div class="preview-chat-message">
-                    <div class="sender">[You]:</div>
-                    <div class="message">${formatted}</div>
-                </div>`;
+                <div class="clan-chat">
+                    <div class="preview-chat-message preview-chat-message-other">
+                        <div class="message-player">
+                            <img src="images/Champion2.png" class="message-player-league-icon" alt="League Icon" />
+                            <div class="message-player-name">${nameOther}</div>
+                        </div>
+                        <div class="chat-message-bubble preview-chat-message-bubble-other">
+                            <div class="message-bubble-role">${role}</div>
+                            <div class="message-bubble-body">${formatted}</div>
+                            <div class="message-bubble-age">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="preview-chat-message preview-chat-message-me">
+                        <div class="message-player">
+                            <img src="images/Titan3.png" class="message-player-league-icon" alt="League Icon" />
+                            <div class="message-player-name">${nameMe}</div>
+                        </div>
+                        <div class="chat-message-bubble preview-chat-message-bubble-me">
+                            <div class="message-bubble-role">${role}</div>
+                            <div class="message-bubble-body">${formatted}</div>
+                            <div class="message-bubble-age">${timeAgo}</div>
+                        </div>
+                    </div>
+                </div>
+                `;
             break;
 
         case 'clanmail':
             formatted = `
                 <h3>Clan Mail</h3>
                 <div class="preview-clan-mail">
-                    <div class="mail-header">Clan Mail from Leader</div>
                     <div class="mail-body">${formatted}</div>
-                </div>`;
+                </div>
+                `;
             break;
 
         case 'clandescription':
@@ -98,41 +125,39 @@ function updatePreview() {
                 <h3>Clan Description</h3>
                 <div class="preview-clan-description">
                     <p>${formatted}</p>
-                </div>`;
+                </div>
+                `;
             break;
 
         case 'clanwarletter':
             formatted = `
                 <h3>Clan Description</h3>
                 <div class="preview-clan-war-letter">
-                    <strong>Clan War Letter</strong>
                     <div class="letter">${formatted}</div>
-                </div>`;
+                </div>
+                `;
             break;
 
         case 'trooprequest':
             formatted = `
                 <h3>Troop Request</h3>
                 <div class="preview-troop-request">
-                    <div class="requester">PlayerX requests:</div>
-                    <div class="troops">🛡️⚔️</div>
                     <div class="message">${formatted}</div>
-                </div>`;
+                </div>
+                `;
             break;
 
         case 'challenge':
             formatted = `
                 <h3>Challenge</h3>
                 <div class="preview-challenge">
-                    <div class="challenge-title">⚔️ Friendly Challenge</div>
                     <div class="challenge-message">${formatted}</div>
-                </div>`;
+                </div>
+                `;
             break;
 
         default:
             formatted = `<div>${formatted}</div>`;
     }
-
-
-    document.getElementById("previewBox").innerHTML = formatted.replace(/\n/g, "<br>");
+    document.getElementById("previewBox").innerHTML = formatted;
 }
