@@ -195,7 +195,7 @@ function updatePreview() {
                 <div class="clan-chat">
                     <div class="preview-chat-message preview-chat-message-other">
                         <div class="message-player">
-                            <img src="images/Champion2.png" class="message-player-league-icon" alt="League Icon" />
+                            <img src="images/Leagues/Champion2.png" class="message-player-league-icon" alt="League Icon" />
                             <div class="message-player-name">${nameOther}</div>
                         </div>
                         <div class="chat-message-bubble preview-chat-message-bubble-other">
@@ -206,7 +206,7 @@ function updatePreview() {
                     </div>
                     <div class="preview-chat-message preview-chat-message-me">
                         <div class="message-player">
-                            <img src="images/Titan3.png" class="message-player-league-icon" alt="League Icon" />
+                            <img src="images/Leagues/Titan3.png" class="message-player-league-icon" alt="League Icon" />
                             <div class="message-player-name">${nameMe}</div>
                         </div>
                         <div class="chat-message-bubble preview-chat-message-bubble-me">

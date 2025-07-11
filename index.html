@@ -31,19 +31,21 @@
                 </ul>
             </div>
             <div id="colorButtons">
-                <button data-code="0" style="background:#000000"></button>
-                <button data-code="1" style="background:#FFFFFF"></button>
-                <button data-code="2" style="background:#FF0000"></button>
-                <button data-code="3" style="background:#00FF00"></button>
-                <button data-code="4" style="background:#0000FF"></button>
-                <button data-code="5" style="background:#00FFFF"></button>
-                <button data-code="6" style="background:#FF00FF"></button>
-                <button data-code="7" style="background:#FFFF00"></button>
-                <button data-code="9" style="background:#bf1238"></button>
-                <button id="customColorBtn">Custom</button>
+                <button data-code="0" style="background:#000000" title="Black"></button>
+                <button data-code="1" style="background:#FFFFFF" title="White"></button>
+                <button data-code="2" style="background:#FF0000" title="Red"></button>
+                <button data-code="3" style="background:#00FF00" title="Green"></button>
+                <button data-code="4" style="background:#0000FF" title="Blue"></button>
+                <button data-code="5" style="background:#00FFFF" title="Aqua"></button>
+                <button data-code="6" style="background:#FF00FF" title="Magenta"></button>
+                <button data-code="7" style="background:#FFFF00" title="Yellow"></button>
+                <button data-code="9" style="background:#bf1238" title="Dark Red"></button>
+                <button id="customColorBtn" title="Custom Color">
+                    <img src="images/ColorWheel2.png" alt="Custom Color">
+                </button>
             </div>
             <textarea id="messageInput" placeholder="Type your message here..."></textarea>
-            <span id="charCounter" style="font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
+            <span id="charCounter"></span>
         </div>
 
         <div class="preview">
@@ -71,6 +73,14 @@
             </a>
         </p>
     </footer>
+
+    <!-- overlays -->
+    <div id="customColorPicker" class="colorpicker-popup" style="display:none;">
+        <button id="closeColorPicker" aria-label="Close color picker">✕</button>
+        <input type="color" id="colorWheel" value="#3EA49A" />
+        <label for="hexInput">Hex Code:</label>
+        <input type="text" id="hexInput" maxlength="6" placeholder="123abc" pattern="[0-9a-fA-F]{6}" />
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

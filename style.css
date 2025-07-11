@@ -186,6 +186,52 @@ footer a:hover {
     background: linear-gradient(to bottom, #a17f6a, #876956);
 }
 
+#colorButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#colorButtons button {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #6c5b54;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#colorButtons button:hover {
+    border-color: #b59781;
+}
+
+#customColorBtn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: transparent;
+    border: 2px solid #6c5b54;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#customColorBtn:hover {
+    border-color: #b59781;
+    color: #9b806d;
+}
+
+#customColorBtn img {
+    width: 45px;
+    height: 45px;
+}
+
 /* MARK: Typing
 */
 
