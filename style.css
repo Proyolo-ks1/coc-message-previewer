@@ -186,14 +186,14 @@ footer a:hover {
     background: linear-gradient(to bottom, #a17f6a, #876956);
 }
 
-#colorButtons {
+#presetColorButtons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-#colorButtons button {
+.color-btn {
     width: 32px;
     height: 32px;
     border: 2px solid #6c5b54;
@@ -202,47 +202,50 @@ footer a:hover {
     transition: border-color 0.2s ease;
     padding: 0;
     box-sizing: border-box;
-}
-
-#colorButtons button:hover {
-    border-color: #b59781;
-}
-
-#customColorBtn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    background-color: transparent;
-    border: 2px solid #6c5b54;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
-#customColorBtn:hover {
+.color-btn:hover {
     border-color: #b59781;
-    color: #9b806d;
 }
 
 #customColorBtn img {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
+}
+
+#customColorHex {
+    border: 2px solid #6c5b54;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: 16px;
+    color: #3a3a3a;
+}
+#customColorHex:focus {
+    outline: none;
+    border-color: #b59781;
+}
+
+#customColorsButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 /* MARK: Typing
 */
 
-
 #messageInput {
     height: 120px;
-    padding: 0.5rem;
     font-size: 1rem;
     font-family: 'Clash', sans-serif;
     font-weight: normal;
     resize: none;
+    margin-top: 1rem;
 }
 
 

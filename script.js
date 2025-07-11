@@ -7,10 +7,23 @@ if (debug) {
 
 
 
-// MARK: Dropdown Menu
+// MARK: Page Elements
+
 const dropdownSelected = document.querySelector('.dropdown-selected');
 const dropdownOptions = document.querySelector('.dropdown-options');
 const options = dropdownOptions.querySelectorAll('li');
+
+const customColorBtn = document.getElementById("customColorBtn");
+const customColorHex = document.getElementById("customColorHex");
+const customColorPicker = document.getElementById("customColorPicker");
+
+const inputTextBox = document.getElementById("messageInput");
+const charCounter = document.getElementById("charCounter");
+const warning = document.getElementById("charWarning");
+
+
+
+// MARK: Dropdown Menu
 
 dropdownSelected.addEventListener('click', () => {
     dropdownOptions.classList.toggle('show');
@@ -42,10 +55,28 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// MARK: InputTextBox
+document.getElementById("coloring").addEventListener("click", function (e) {
+    const button = e.target.closest("button[color-id]");
+    if (!button) return;
+
+    const input = inputTextBox;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    const selectedText = input.value.slice(start, end);
+
+    const colorId = button.getAttribute("color-id");
+    const startTag = `<c${colorId}>`;
+    const endTag = `</c>`;
+    const replacement = startTag + selectedText + endTag;
+
+    // Replaces and adds to undo/redo stack
+    input.setRangeText(replacement, start, end, "end");
+
+    handleInputChange();
+});
+
 // MARK: Preview
-const input = document.getElementById("messageInput");
-const charCounter = document.getElementById("charCounter");
-const warning = document.getElementById("charWarning");
 
 const charLimits = {
     "challenge": 80,
@@ -59,7 +90,7 @@ const charLimits = {
 function handleInputChange() {
     const messageType = getSelectedMessageType();
     const charLimit = charLimits[messageType]
-    const currentChars = input.value.length
+    const currentChars = inputTextBox.value.length
 
     let text = `${currentChars}/${charLimit}`;
     let color = "rgb(127,127,127)";
