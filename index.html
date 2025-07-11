@@ -30,10 +30,20 @@
                     <li data-value="trooprequest">Troop Request (Soon)</li>
                 </ul>
             </div>
-            <div id="charWarning" style="color: red; font-style: italic; display: none;">
-                Maximum of 128 characters reached!
+            <div id="colorButtons">
+                <button data-code="0" style="background:#000000"></button>
+                <button data-code="1" style="background:#FFFFFF"></button>
+                <button data-code="2" style="background:#FF0000"></button>
+                <button data-code="3" style="background:#00FF00"></button>
+                <button data-code="4" style="background:#0000FF"></button>
+                <button data-code="5" style="background:#00FFFF"></button>
+                <button data-code="6" style="background:#FF00FF"></button>
+                <button data-code="7" style="background:#FFFF00"></button>
+                <button data-code="9" style="background:#bf1238"></button>
+                <button id="customColorBtn">Custom</button>
             </div>
             <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+            <span id="charCounter" style="font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
         </div>
 
         <div class="preview">
@@ -42,12 +52,6 @@
                 Your message will appear here...
             </div>
         </div>
-
-        <details style="margin-top:2rem;">
-            <summary>ℹ️ Formatting Tips</summary>
-            <p>Use <code>&lt;c2&gt;your text&lt;/c&gt;</code> for red text.<br>
-            Use <code>&lt;c3EA49A&gt;your text&lt;/c&gt;</code> for custom colors (hex).</p>
-        </details>
     </main>
 
     <footer>

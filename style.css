@@ -102,13 +102,15 @@ footer {
 footer a {
     color: #ffaa00;
     text-decoration: none;
-    transition: color 0.2s ease;
     text-decoration: underline;
 }
 
 footer a:hover {
     color: #ffd266;
 }
+
+/* MARK: Controls
+*/
 
 .controls {
     max-width: 600px;
@@ -184,7 +186,11 @@ footer a:hover {
     background: linear-gradient(to bottom, #a17f6a, #876956);
 }
 
-textarea {
+/* MARK: Typing
+*/
+
+
+#messageInput {
     height: 120px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -192,6 +198,12 @@ textarea {
     font-weight: normal;
     resize: none;
 }
+
+
+
+
+/* MARK: PREVIEW
+*/
 
 .preview {
     width: 100%;
@@ -326,41 +338,46 @@ textarea {
     border-left: 10px solid var(--chat-message-me-background); /* or #5f5651 */
 }
 
-/* MARK: Clan Mail
+/* MARK: > Clan Mail
 */
 .preview-clan-mail {
     background-color: #5f5651;
     border-left: 5px solid #0077cc;
 }
 
-/* MARK: Clan Description
+/* MARK: > Clan Description
 */
 .preview-clan-description {
     background-color: #5f5651;
     border-left: 5px solid #339966;
 }
 
-/* MARK: Clan War Letter
+/* MARK: > Clan War Letter
 */
 .preview-clan-war-letter {
     background-color: #5f5651;
     border-left: 5px solid #cc0000;
 }
 
-/* MARK: Troop Request
+/* MARK: > Troop Request
 */
 .preview-troop-request {
     background-color: #5f5651;
     border-left: 5px solid #3399ff;
 }
 
-/* MARK: Friendly Challenge
+/* MARK: > Friendly Challenge
 */
 .preview-challenge {
     background-color: #5f5651;
     border-left: 5px solid #9900cc;
 }
 
+
+
+
+/* MARK: Custom Markup
+*/
 .underline {
     text-decoration: underline;
 }
