@@ -1,48 +1,13 @@
-const input = document.getElementById("messageInput");
-const warning = document.getElementById("charWarning");
+// MARK: Debugging
+const debug = false;
 
-input.addEventListener("input", () => {
-    if (input.value.length > 128) {
-        input.style.color = "red"; // alles rood
-        warning.style.display = "block";
-    } else {
-        input.style.color = "";    // terug naar standaardkleur
-        warning.style.display = "none";
-    }
-    updatePreview();
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("messageInput").addEventListener("input", updatePreview);
-    updatePreview();
-});
-
-// # MARK: Preview
-function formatColors(text) {
-    const withLineBreaks = text.replace(/\n/g, "<br>");
-    return withLineBreaks.replace(/<c([0-9A-Fa-f#]{1,6})>([\s\S]*?)<\/c>/g, (match, colorCode, content) => {
-        const presetColors = {
-            "0": "#000000", // black
-            "1": "#FFFFFF", // white
-            "2": "#FF0000", // red
-            "3": "#00FF00", // green
-            "4": "#0000FF", // blue
-            "5": "#00FFFF", // aqua
-            "6": "#FF00FF", // magenta
-            "7": "#FFFF00", // yellow
-            "9": "#8B0000"  // dark red
-        };
-
-        const color = presetColors[colorCode] || (
-            colorCode.startsWith("#") ? colorCode : `#${colorCode}`
-        );
-
-        return `<span style="color:${color}">${content}</span>`;
-    });
+if (debug) {
+    document.body.classList.add('debug-mode');
 }
 
 
-// # MARK: Dropdown Menu
+
+// MARK: Dropdown Menu
 const dropdownSelected = document.querySelector('.dropdown-selected');
 const dropdownOptions = document.querySelector('.dropdown-options');
 const options = dropdownOptions.querySelectorAll('li');
@@ -51,24 +16,24 @@ dropdownSelected.addEventListener('click', () => {
     dropdownOptions.classList.toggle('show');
 });
 
-// options.forEach(option => {
-//     option.addEventListener('click', () => {
-//         // Remove previous selection
-//         dropdownOptions.querySelector('li.selected').classList.remove('selected');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        // Remove previous selection
+        dropdownOptions.querySelector('li.selected').classList.remove('selected');
 
-//         // Mark this option as selected
-//         option.classList.add('selected');
+        // Mark this option as selected
+        option.classList.add('selected');
 
-//         // Update displayed value
-//         dropdownSelected.textContent = option.textContent;
+        // Update displayed value
+        dropdownSelected.textContent = option.textContent;
 
-//         // Close options
-//         dropdownOptions.classList.remove('show');
+        // Close options
+        dropdownOptions.classList.remove('show');
 
-//         // Update preview because the message type changed
-//         updatePreview();
-//     });
-// });
+        // Update preview because the message type changed
+        handleInputChange();
+    });
+});
 
 // Close dropdown if clicked outside
 document.addEventListener('click', (e) => {
@@ -77,11 +42,125 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// MARK: Preview
+const input = document.getElementById("messageInput");
+const charCounter = document.getElementById("charCounter");
+const warning = document.getElementById("charWarning");
+
+const charLimits = {
+    "challenge": 80,
+    "chatmessage": 128,
+    "clanmail": 256,
+    "clandescription": 251,
+    "clanwarletter": 160,
+    "trooprequest": 154,
+};
+
+function handleInputChange() {
+    const messageType = getSelectedMessageType();
+    const charLimit = charLimits[messageType]
+    const currentChars = input.value.length
+
+    let text = `${currentChars}/${charLimit}`;
+    let color = "rgb(127,127,127)";
+
+    if (currentChars > charLimit) {
+        text += " - Maximum of " + charLimit + " characters reached!";
+        color = "red";
+    }
+
+    charCounter.textContent = text;
+    charCounter.style.color = color;
+
+    updatePreview();
+};
+
+// MARK: > Formatting
+function formatTextChatMessage(text) {
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>"']/g, function(m) {
+            switch (m) {
+                case "&": return "&amp;";
+                case "<": return "&lt;";
+                case ">": return "&gt;";
+                case '"': return "&quot;";
+                case "'": return "&#39;";
+            }
+        });
+    }
+    const withLineBreaks = escapeHTML(text).replace(/\n/g, "<br>");
+
+    const presetColors = {
+        "0": "#000000", // black
+        "1": "#FFFFFF", // white
+        "2": "#FF0000", // red
+        "3": "#00FF00", // green
+        "4": "#0000FF", // blue
+        "5": "#00FFFF", // aqua
+        "6": "#FF00FF", // magenta
+        "7": "#FFFF00", // yellow
+        "8": "#FF00FF", // magenta (fallback)
+        "9": "#bf1238"  // dark red
+    };
+
+    return withLineBreaks.replace(/&lt;c([0-9A-Fa-f#]{1,8})&gt;([\s\S]*?)&lt;\/c&gt;/g, (match, colorCode, content) => {
+        // Normalize to uppercase
+        colorCode = colorCode.toUpperCase();
+
+        // Check for single digit preset
+        if (presetColors.hasOwnProperty(colorCode)) {
+            return `<span style="color:${presetColors[colorCode]}">${content}</span>`;
+        }
+
+        // Accept only 6-digit or 8-digit hex codes
+        if (/^[0-9A-F]{6}$/.test(colorCode)) {
+            // 6-digit RGB hex
+            return `<span style="color:#${colorCode}">${content}</span>`;
+        } else if (/^[0-9A-F]{8}$/.test(colorCode)) {
+            // 8-digit ARGB hex: AARRGGBB
+            // Parse alpha and convert to CSS rgba()
+            const alphaHex = colorCode.slice(0, 2);
+            const rHex = colorCode.slice(2, 4);
+            const gHex = colorCode.slice(4, 6);
+            const bHex = colorCode.slice(6, 8);
+
+            const alpha = parseInt(alphaHex, 16) / 255;
+            const r = parseInt(rHex, 16);
+            const g = parseInt(gHex, 16);
+            const b = parseInt(bHex, 16);
+
+            return `<span style="color:rgba(${r},${g},${b},${alpha.toFixed(2)})">${content}</span>`;
+        }
+
+        // Invalid code: remove tags but keep content
+        return content;
+    });
+}
+
+function formatTextNoFormat(text) {
+    function escapeHTML(str) {
+        return str.replace(/[&<>"']/g, function(m) {
+            switch (m) {
+                case "&": return "&amp;";
+                case "<": return "&lt;";
+                case ">": return "&gt;";
+                case '"': return "&quot;";
+                case "'": return "&#39;";
+            }
+        });
+    }
+
+    return escapeHTML(text).replace(/\n/g, "<br>");
+}
+
+// MARK: getSelectedMessageType()
 function getSelectedMessageType() {
     const selected = document.querySelector('.dropdown-options li.selected');
     return selected ? selected.getAttribute('data-value') : 'chatmessage';
 }
 
+// MARK: updatePreview()
 function updatePreview() {
     const input = document.getElementById("messageInput").value;
     const maxLength = 128;
@@ -94,8 +173,13 @@ function updatePreview() {
         isTruncated = true;
     }
 
-    let formatted = formatColors(displayText);
     const messageType = getSelectedMessageType();
+    let formattedText;
+    if (messageType == 'chatmessage') {
+        formattedText = formatTextChatMessage(displayText);
+    } else {
+        formattedText = formatTextNoFormat(displayText);
+    }
     
     const nameOther = 'Other Guy';
     const nameMe = 'You'; 
@@ -105,8 +189,9 @@ function updatePreview() {
 
     // Customize preview depending on messageType
     switch(messageType) {
+        // MARK: > HTML: Chat Message
         case 'chatmessage':
-            formatted = `
+            previewHtmlText = `
                 <div class="clan-chat">
                     <div class="preview-chat-message preview-chat-message-other">
                         <div class="message-player">
@@ -115,7 +200,7 @@ function updatePreview() {
                         </div>
                         <div class="chat-message-bubble preview-chat-message-bubble-other">
                             <div class="message-bubble-role">${role}</div>
-                            <div class="message-bubble-body">${formatted}</div>
+                            <div class="message-bubble-body">${formattedText}</div>
                             <div class="message-bubble-age">${timeAgo}</div>
                         </div>
                     </div>
@@ -126,7 +211,7 @@ function updatePreview() {
                         </div>
                         <div class="chat-message-bubble preview-chat-message-bubble-me">
                             <div class="message-bubble-role">${role}</div>
-                            <div class="message-bubble-body">${formatted}</div>
+                            <div class="message-bubble-body">${formattedText}</div>
                             <div class="message-bubble-age">${timeAgo}</div>
                         </div>
                     </div>
@@ -134,53 +219,64 @@ function updatePreview() {
                 `;
             break;
 
+        // MARK: > HTML: Clan Mail
         case 'clanmail':
-            formatted = `
+            previewHtmlText = `
                 <h3>Clan Mail</h3>
                 <div class="preview-clan-mail">
-                    <div class="mail-body">${formatted}</div>
+                    <div class="mail-body">${formattedText}</div>
                 </div>
                 `;
             break;
 
+        // MARK: > HTML: Clan Description
         case 'clandescription':
-            formatted = `
+            previewHtmlText = `
                 <h3>Clan Description</h3>
                 <div class="preview-clan-description">
-                    <p>${formatted}</p>
+                    <div class="letter">${formattedText}</div>
                 </div>
                 `;
             break;
 
+        // MARK: > HTML: Clan War Letter
         case 'clanwarletter':
-            formatted = `
+            previewHtmlText = `
                 <h3>Clan Description</h3>
                 <div class="preview-clan-war-letter">
-                    <div class="letter">${formatted}</div>
+                    <div class="letter">${formattedText}</div>
                 </div>
                 `;
             break;
 
+        // MARK: > HTML: Troop Request
         case 'trooprequest':
-            formatted = `
+            previewHtmlText = `
                 <h3>Troop Request</h3>
                 <div class="preview-troop-request">
-                    <div class="message">${formatted}</div>
+                    <div class="message">${formattedText}</div>
                 </div>
                 `;
             break;
 
+        // MARK: > HTML: Friendly Challenge
         case 'challenge':
-            formatted = `
+            previewHtmlText = `
                 <h3>Challenge</h3>
                 <div class="preview-challenge">
-                    <div class="challenge-message">${formatted}</div>
+                    <div class="challenge-message">${formattedText}</div>
                 </div>
                 `;
             break;
 
         default:
-            formatted = `<div>${formatted}</div>`;
+            previewHtmlText = `<div>${formattedText}</div>`;
     }
-    document.getElementById("previewBox").innerHTML = formatted;
+    document.getElementById("previewBox").innerHTML = previewHtmlText;
 }
+
+// MARK: Run Once
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("messageInput").addEventListener("input", handleInputChange);
+    handleInputChange();
+});

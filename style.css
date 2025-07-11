@@ -31,7 +31,7 @@
 @font-face {
     font-family: 'Panton Trail';
     src: url('fonts/Panton-Trial-Black.ttf') format('truetype');
-    font-weight: 900 ;
+    font-weight: 700 ;
     font-style: normal;
 }
 
@@ -188,7 +188,8 @@ textarea {
     height: 120px;
     padding: 0.5rem;
     font-size: 1rem;
-    font-family: 'Panton Trail', sans-serif;
+    font-family: 'Clash', sans-serif;
+    font-weight: normal;
     resize: none;
 }
 
@@ -203,7 +204,7 @@ textarea {
     background-color: #000000;
 }
 
-/* MARK: Chat Message
+/* MARK: > Chat Message
 */
 
 .clan-chat {
@@ -234,7 +235,7 @@ textarea {
 
 .preview-chat-message .message-player-name {
     font-size: 1.25rem;
-    font-family: 'Panton Trail', sans-serif;
+    font-family: "CCBackBeat W90 Heavy Italic", sans-serif;
     letter-spacing: 0.03em;
 }
 
@@ -255,7 +256,7 @@ textarea {
     font-size: 1rem;
     word-wrap: break-word;
     color: var(--chat-message-default-text);
-    font-family: 'Panton Trail', sans-serif;
+    font-family: "CCBackBeat W90 Heavy Italic", sans-serif;
     letter-spacing: 0.03em;
 }
 
@@ -362,4 +363,21 @@ textarea {
 
 .underline {
     text-decoration: underline;
+}
+
+
+
+/* MARK: Debugging
+/* Only applies when debug-mode is active on body */
+.debug-mode .clan-chat {
+    border: 5px solid var(--placeholder1);
+    border-right: 5px solid var(--chat-border);
+}
+
+.debug-mode .preview-chat-message {
+    border: 5px solid var(--placeholder2);
+}
+
+.debug-mode .preview-chat-message .message-player {
+    border: 5px solid var(--placeholder3);
 }
