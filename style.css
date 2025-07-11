@@ -220,7 +220,6 @@ footer a:hover {
 */
 
 .clan-chat {
-    /* border: 5px solid var(--placeholder1); */
     border-right: 5px solid var(--chat-border);
     background-color: var(--chat-background);
     padding: 1rem;
@@ -228,12 +227,10 @@ footer a:hover {
 
 /* GENERAL MESSAGE */
 .preview-chat-message {
-    /* border: 5px solid var(--placeholder2); */
     max-width: 80%;
 }
 
 .preview-chat-message .message-player {
-    /* border: 5px solid var(--placeholder3); */
     display: flex;
     flex-direction: row;
     align-items: flex-end;
