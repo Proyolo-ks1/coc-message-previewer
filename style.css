@@ -109,6 +109,18 @@ footer a:hover {
     color: #ffd266;
 }
 
+/* MARK: Update Log
+*/
+
+.update-box {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 6px;
+    background-color: var(--chat-message-me-background);
+    color: var(--chat-message-default-text);
+}
+
 /* MARK: Controls
 */
 

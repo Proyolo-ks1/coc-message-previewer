@@ -20,6 +20,58 @@ const customColorPicker = document.getElementById("customColorPicker");
 const inputTextBox = document.getElementById("messageInput");
 const charCounter = document.getElementById("charCounter");
 const warning = document.getElementById("charWarning");
+const shareLink = document.getElementById("share-link")
+
+
+// MARK: Update ChangeLog
+fetch('changelog.json')
+    .then(response => response.json())
+    .then(changelog => {
+        const container = document.getElementById('changelog-container');
+        changelog.forEach(entry => {
+        const box = document.createElement('div');
+        box.classList.add('update-box');
+
+        box.innerHTML = `
+            <div style="font-size: 0.8em; color: gray; margin-bottom: 0.3em;">${entry.date}</div>
+            <h3 style="font-weight: bold; margin: 0 0 0.3em 0;">${entry.version} — ${entry.title}</h3>
+            <p style="font-size: 0.9em; margin: 0;">${entry.description}</p>
+        `;
+
+        container.appendChild(box);
+        });
+
+        // Update alleen het versie-nummer
+        const newest = changelog.length > 0 ? changelog[0] : { version: "0.0" };
+        const versionSpan = document.getElementById('version-number');
+        if (versionSpan && newest) {
+            versionSpan.textContent = newest.version;
+        }
+    })
+    .catch(err => {
+        console.error("Failed to load changelog:", err);
+    });
+
+
+
+// MARK: Share Link
+
+shareLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    const url = "https://proyolo-ks1.github.io/coc-message-previewer/";
+
+    navigator.clipboard.writeText(url).then(() => {
+        const feedback = document.getElementById("copy-feedback");
+        feedback.style.display = "inline";
+
+        setTimeout(() => {
+            feedback.style.display = "none";
+        }, 2000);
+    }).catch(err => {
+        alert("Failed to copy the link.");
+        console.error(err);
+    });
+});
 
 
 
@@ -65,8 +117,20 @@ document.getElementById("coloring").addEventListener("click", function (e) {
     const end = input.selectionEnd;
     const selectedText = input.value.slice(start, end);
 
+    let markupColor;
     const colorId = button.getAttribute("color-id");
-    const startTag = `<c${colorId}>`;
+
+    if (colorId === "customColorBtn") {
+        const customHexColor = customColorHex.value.trim();
+        if (!/^#[0-9A-Fa-f]{6}$/.test(customHexColor)) {
+            alert("Invalid custom color format. Use #RRGGBB.");
+            return;
+        }
+        markupColor = customHexColor.slice(1); // remove the "#"
+    } else {
+        markupColor = colorId
+    }
+    const startTag = `<c${markupColor}>`;
     const endTag = `</c>`;
     const replacement = startTag + selectedText + endTag;
 
@@ -131,7 +195,7 @@ function formatTextChatMessage(text) {
         "5": "#00FFFF", // aqua
         "6": "#FF00FF", // magenta
         "7": "#FFFF00", // yellow
-        "8": "#FF00FF", // magenta (fallback)
+        "8": "#FF00FF", // magenta (second?)
         "9": "#bf1238"  // dark red
     };
 

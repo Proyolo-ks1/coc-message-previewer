@@ -1,0 +1,32 @@
+[
+    {
+        "version": "0.4.1",
+        "date": "2025-07-28",
+        "title": "Added Simple Share feature",
+        "description": "You can now copy the link to the site using the hyperlinktext 'share' on the bottom of the page."
+    },
+    {
+        "version": "0.4.0",
+        "date": "2025-07-28",
+        "title": "Added Custom Hex Color Support",
+        "description": "You can now input your own custom hex color codes and apply them to your message.\nAnd added some more preset color buttons."
+    },
+    {
+        "version": "0.3",
+        "date": "2025-07-11",
+        "title": "Color Buttons Added",
+        "description": "Added preset color buttons for quick text coloring in messages."
+    },
+    {
+        "version": "0.2",
+        "date": "2025.06.09",
+        "title": "Actual 'In-Game' Preview",
+        "description": "The preview now actually shows how the message would look in-game, but in italic for now."
+    },
+    {
+        "version": "0.1",
+        "date": "2025.06.09",
+        "title": "First Steps",
+        "description": "You can now type text, and it will come out colored in the preview just like in clash of clans."
+    }
+]

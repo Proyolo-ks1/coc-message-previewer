@@ -22,7 +22,7 @@
         <div class="controls">
             <div class="custom-dropdown">
                 <label>Select message type:</label>
-                <div class="dropdown-selected" tabindex="0">Chat Message (50% Done)</div>
+                <div class="dropdown-selected" tabindex="0">Chat Message (80% Done)</div>
                 <ul class="dropdown-options" tabindex="-1" aria-hidden="true">
                     <li data-value="challenge">Challenge (Soon)</li>
                     <li data-value="chatmessage" class="selected">Chat Message (50% Done)</li>
@@ -45,7 +45,7 @@
                     <button class="color-btn" color-id="7" style="background:#FFFF00" title="Yellow"></button>
                     <button class="color-btn" color-id="9" style="background:#bf1238" title="Dark Red"></button>
 
-                    <button class="color-btn" id="customColorBtn" title="Custom Color">
+                    <button class="color-btn" color-id="customColorBtn" title="Custom Color">
                         <img src="images/ColorWheel.png" alt="Custom Color">
                     </button>
                     <input id="customColorHex" type="text" maxlength="7" placeholder="#RRGGBB" style="width: 80px; margin-left: 8px; font-family: monospace;" />
@@ -82,6 +82,8 @@
                 Your message will appear here...
             </div>
         </div>
+
+        <div id="changelog-container"></div>
     </main>
 
     <footer>
@@ -96,11 +98,14 @@
             <a href="https://supercell.com/fan-content-policy" target="_blank" rel="noopener noreferrer">Supercell Fan Content Policy</a>.
         </p>
         <p>
-            version 0.3
+            version <span id="version-number">0.4</span>
             &nbsp;—&nbsp;
             <a href="https://github.com/Proyolo-ks1/coc-message-previewer/issues" target="_blank" rel="noopener noreferrer">
                 Report bugs or suggest features
             </a>
+            &nbsp;—&nbsp;
+            <a href="#" id="share-link">Share</a>
+            <span id="copy-feedback" style="display:none; color:green; margin-left: 8px;">Copied!</span>
         </p>
     </footer>
 
