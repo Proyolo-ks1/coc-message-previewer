@@ -228,6 +228,7 @@ footer a:hover {
 
 #customColorGroup {
     display: flex;
+    flex-direction: row;
     border-radius: 8px;
     background-color: var(--dropdown-background);
     gap: 0.5rem;
