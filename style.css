@@ -115,6 +115,14 @@ footer a:hover {
 /* MARK: Update Log
 */
 
+#changelog-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--dropdown-background);
+    line-height: 1.4;
+}
+
 .update-box {
     border: 1px solid #ccc;
     padding: 1em;
