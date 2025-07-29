@@ -399,4 +399,5 @@ function updatePreview() {
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("messageInput").addEventListener("input", handleInputChange);
     handleInputChange();
+    customColorTextField.dispatchEvent(new Event("input"));
 });
