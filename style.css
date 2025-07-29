@@ -1,4 +1,5 @@
 :root {
+    --page-background: #1a1a1a;
     --placeholder1:#ff0;
     --placeholder2:#f0f;
     --placeholder3:#0ff;
@@ -46,7 +47,7 @@ html, body {
     display: flex;
     flex-direction: column;
     font-family: 'Clash', sans-serif;
-    background-color: #1a1a1a;
+    background-color: var(--page-background);
     color: #f0f0f0;
 }
 

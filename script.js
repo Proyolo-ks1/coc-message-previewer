@@ -34,9 +34,9 @@ fetch('changelog.json')
         box.classList.add('update-box');
 
         box.innerHTML = `
-            <div style="font-size: 0.8em; color: gray; margin-bottom: 0.3em;">${entry.date}</div>
-            <h3 style="font-weight: bold; margin: 0 0 0.3em 0;">${entry.version} — ${entry.title}</h3>
-            <p style="font-size: 0.9em; margin: 0;">${entry.description}</p>
+            <div style="color: #1a1a1a; font-size: 0.8em; margin-bottom: 0.3em;">${entry.date}</div>
+             <h3 style="color: #eeeeee; font-weight: bold; margin: 0 0 0.3em 0;">${entry.version} — ${entry.title}</h3>
+              <p style="color: #bbbbbb; font-size: 0.9em; margin: 0;">${entry.description}</p>
         `;
 
         container.appendChild(box);
