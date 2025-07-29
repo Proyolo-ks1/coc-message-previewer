@@ -1,5 +1,11 @@
 [
     {
+        "version": "0.4.2",
+        "date": "2025-07-29",
+        "title": "The Color Wheel!",
+        "description": "You can now use the colorwheel whenever inserting a custom color into the custom color text field."
+    },
+    {
         "version": "0.4.1",
         "date": "2025-07-28",
         "title": "Added Simple Share feature",

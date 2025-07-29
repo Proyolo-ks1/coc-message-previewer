@@ -14,7 +14,8 @@ const dropdownOptions = document.querySelector('.dropdown-options');
 const options = dropdownOptions.querySelectorAll('li');
 
 const customColorBtn = document.getElementById("customColorBtn");
-const customColorHex = document.getElementById("customColorHex");
+const customColorTextField = document.getElementById("customColorTextField");
+const colorWheelBtn = document.getElementById("colorWheelButton");
 const customColorPicker = document.getElementById("customColorPicker");
 
 const inputTextBox = document.getElementById("messageInput");
@@ -108,6 +109,30 @@ document.addEventListener('click', (e) => {
 });
 
 // MARK: InputTextBox
+
+// Inserting Custom Color
+
+// Open build-in browser color wheel
+colorWheelBtn.addEventListener("click", () => {
+    customColorPicker.click();
+});
+
+// Apply Chosen color to customColorHex.value
+customColorPicker.addEventListener("input", () => {
+    customColorTextField.value = customColorPicker.value.toUpperCase();
+    customColorBtn.style.backgroundColor = customColorTextField.value;
+});
+
+// Update color picker when user types a valid hex color
+customColorTextField.addEventListener("input", () => {
+    const val = customColorTextField.value.toUpperCase();
+    if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+        customColorPicker.value = val;
+        customColorBtn.style.backgroundColor = val;
+    }
+});
+
+// Clicking Color Buttons
 document.getElementById("coloring").addEventListener("click", function (e) {
     const button = e.target.closest("button[color-id]");
     if (!button) return;
@@ -121,7 +146,7 @@ document.getElementById("coloring").addEventListener("click", function (e) {
     const colorId = button.getAttribute("color-id");
 
     if (colorId === "customColorBtn") {
-        const customHexColor = customColorHex.value.trim();
+        const customHexColor = customColorTextField.value.trim();
         if (!/^#[0-9A-Fa-f]{6}$/.test(customHexColor)) {
             alert("Invalid custom color format. Use #RRGGBB.");
             return;

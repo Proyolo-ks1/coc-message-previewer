@@ -45,11 +45,15 @@
                     <button class="color-btn" color-id="7" style="background:#FFFF00" title="Yellow"></button>
                     <button class="color-btn" color-id="9" style="background:#bf1238" title="Dark Red"></button>
 
-                    <button class="color-btn" color-id="customColorBtn" title="Custom Color">
-                        <img src="images/ColorWheel.png" alt="Custom Color">
-                    </button>
-                    <input id="customColorHex" type="text" maxlength="7" placeholder="#RRGGBB" style="width: 80px; margin-left: 8px; font-family: monospace;" />
-                    <input id="customColorPicker" type="color" style="display:none" />
+                    <!-- Custom color segment -->
+                    <div id="customColorGroup">
+                        <button class="color-btn" id="customColorBtn" color-id="customColorBtn" style="background:#000000" title="Custom Color"></button>
+                        <input id="customColorTextField" type="text" maxlength="7" placeholder="#RRGGBB" />
+                        <button class="color-btn" id="colorWheelButton" title="Use Color Wheel">
+                            <img src="images/ColorWheel.png" alt="Custom Color">
+                        </button>
+                        <input id="customColorPicker" type="color" style="display:none" />
+                    </div>
                 </div>
 
                 <!-- Second row -->

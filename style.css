@@ -12,6 +12,8 @@
     --chat-message-default-text: #ffffff;
     --chat-message-age: #a2a299;
     --chat-message-pinned: #2a78d6;
+    --dropdown-background: #3a312d;
+    --dropdown-border: #6c5b54;
 }
 
 @font-face {
@@ -146,8 +148,8 @@ footer a:hover {
 }
 
 .dropdown-selected {
-    background-color: #3a312d;
-    border: 1px solid #6c5b54;
+    background-color: var(--dropdown-background);
+    border: 1px solid var(--dropdown-border);
     border-radius: 8px;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -163,8 +165,8 @@ footer a:hover {
     list-style: none;
     margin: 0;
     padding: 0.25rem 0;
-    background: #3a312d;
-    border: 1px solid #6c5b54;
+    background: var(--dropdown-background);
+    border: 1px solid var(--dropdown-border);
     border-radius: 8px;
     position: absolute;
     width: 100%;
@@ -208,7 +210,7 @@ footer a:hover {
 .color-btn {
     width: 32px;
     height: 32px;
-    border: 2px solid #6c5b54;
+    border: 2px solid var(--dropdown-border);
     border-radius: 6px;
     cursor: pointer;
     transition: border-color 0.2s ease;
@@ -224,19 +226,24 @@ footer a:hover {
     border-color: #b59781;
 }
 
-#customColorBtn img {
-    width: 40px;
-    height: 40px;
+#customColorGroup {
+    display: flex;
+    border-radius: 8px;
+    background-color: var(--dropdown-background);
+    gap: 0.5rem;
+    margin-left: calc(32px + 0.5rem);
 }
 
-#customColorHex {
-    border: 2px solid #6c5b54;
-    border-radius: 6px;
-    padding: 4px 6px;
+#customColorTextField {
+    width: calc(96px + 1rem);
+    font-family: monospace;
+    border: 2px solid var(--dropdown-border);
+    border-radius: 8px;
+    padding: 4px 8px;
     font-size: 16px;
-    color: #3a3a3a;
 }
-#customColorHex:focus {
+
+#customColorTextField:focus {
     outline: none;
     border-color: #b59781;
 }
@@ -245,7 +252,6 @@ footer a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.5rem;
 }
 
 /* MARK: Typing
