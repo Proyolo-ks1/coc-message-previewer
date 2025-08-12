@@ -1,5 +1,11 @@
 [
     {
+        "version": "0.4.3",
+        "date": "2025-08-12",
+        "title": "Copy Message Button",
+        "description": "Added a small 📋 button next to the character counter to quickly copy your message to the clipboard."
+    },
+    {
         "version": "0.4.2",
         "date": "2025-07-29",
         "title": "The Color Wheel!",

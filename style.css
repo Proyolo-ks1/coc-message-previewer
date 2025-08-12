@@ -276,6 +276,20 @@ footer a:hover {
     margin-top: 1rem;
 }
 
+#messageActions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#copyMessageBtn {
+    background: var(--dropdown-background);
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 
 
 

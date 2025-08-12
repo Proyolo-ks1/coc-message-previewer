@@ -165,6 +165,18 @@ document.getElementById("coloring").addEventListener("click", function (e) {
     handleInputChange();
 });
 
+document.getElementById("copyMessageBtn").addEventListener("click", () => {
+    const text = document.getElementById("messageInput").value;
+    navigator.clipboard.writeText(text).then(() => {
+        // Optional visual feedback
+        const btn = document.getElementById("copyMessageBtn");
+        btn.textContent = "✅";
+        setTimeout(() => btn.textContent = "📋", 1000);
+    }).catch(err => {
+        console.error("Failed to copy text: ", err);
+    });
+});
+
 // MARK: Preview
 
 const charLimits = {
