@@ -15,7 +15,7 @@
         "version": "0.4.1",
         "date": "2025-07-28",
         "title": "Added Simple Share feature",
-        "description": "You can now copy the link to the site using the hyperlinktext 'share' on the bottom of the page."
+        "description": "You can now quickly share the website using the hyperlinktext 'share' on the bottom of the page."
     },
     {
         "version": "0.4.0",
