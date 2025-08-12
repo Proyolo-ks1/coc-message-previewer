@@ -283,17 +283,17 @@ function getSelectedMessageType() {
 // MARK: updatePreview()
 function updatePreview() {
     const input = document.getElementById("messageInput").value;
-    const maxLength = 128;
+    const messageType = getSelectedMessageType();
+    const charLimit = charLimits[messageType]
 
     let displayText = input;
     let isTruncated = false;
 
-    if (input.length > maxLength) {
-        displayText = input.substring(0, maxLength);
+    if (input.length > charLimit) {
+        displayText = input.substring(0, charLimit);
         isTruncated = true;
     }
 
-    const messageType = getSelectedMessageType();
     let formattedText;
     if (messageType == 'chatmessage') {
         formattedText = formatTextChatMessage(displayText);
