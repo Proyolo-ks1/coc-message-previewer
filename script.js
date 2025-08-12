@@ -61,17 +61,29 @@ shareLink.addEventListener("click", function (e) {
     e.preventDefault();
     const url = "https://proyolo-ks1.github.io/coc-message-previewer/";
 
-    navigator.clipboard.writeText(url).then(() => {
-        const feedback = document.getElementById("copy-feedback");
-        feedback.style.display = "inline";
-
-        setTimeout(() => {
-            feedback.style.display = "none";
-        }, 2000);
-    }).catch(err => {
-        alert("Failed to copy the link.");
-        console.error(err);
-    });
+    if (navigator.share) {
+        navigator.share({
+            title: "Clash of Clans Message Previewer",
+            text: "Preview your Clan Chat Message before sending it with custom colors!",
+            url: url
+        }).catch(err => {
+            if (err.name !== "AbortError") {
+                console.error("Share failed:", err);
+            }
+        });
+    } else {
+        // Fallback for browsers that don't support Web Share API
+        navigator.clipboard.writeText(url).then(() => {
+            const feedback = document.getElementById("copy-feedback");
+            feedback.style.display = "inline";
+            setTimeout(() => {
+                feedback.style.display = "none";
+            }, 2000);
+        }).catch(err => {
+            alert("Failed to copy the link.");
+            console.error(err);
+        });
+    }
 });
 
 
