@@ -65,13 +65,12 @@ main {
 }
 
 header {
-    height: 80px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 10px;
+    padding: 0.5rem 1rem;
     background-color: #262626;
 }
 
@@ -93,10 +92,9 @@ header img {
 }
 
 footer {
-    height: 90px;
     flex-shrink: 0;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: #262626;
     font-weight: normal;
     font-size: 0.8rem;
@@ -468,6 +466,21 @@ footer a:hover {
 */
 .underline {
     text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+    #presetColorButtons {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    #customColorGroup {
+        flex-direction: column;
+    }
+    textarea#messageInput {
+        font-size: 1.2rem;
+    }
+    /* Move or resize footer here */
 }
 
 
