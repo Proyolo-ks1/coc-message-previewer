@@ -461,7 +461,6 @@ footer a:hover {
 
 
 
-
 /* MARK: Custom Markup
 */
 .underline {
@@ -469,18 +468,18 @@ footer a:hover {
 }
 
 
-@media (max-width: 600px) {
+
+/* MARK: MOBILE
+*/
+@media (max-width: 700px) {
     #presetColorButtons {
         flex-wrap: nowrap;
         overflow-x: auto;
     }
-    #customColorGroup {
-        flex-direction: column;
+    #customColorsButtons {
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
-    textarea#messageInput {
-        font-size: 1.2rem;
-    }
-    /* Move or resize footer here */
 }
 
 
