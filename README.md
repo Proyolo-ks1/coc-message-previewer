@@ -3,3 +3,6 @@ Preview how Clash of Clans messages look before sending them. Supports clan mail
 
 ## 🌐 Live Website
 Check it out here: [Clash of Clans Message Previewer](https://proyolo-ks1.github.io/coc-message-previewer/)
+
+## 🖼️ Preview
+![Clash of Clans Message Previewer Screenshot](images/coc-message-previewer-preview-1280×720.png)
