@@ -189,7 +189,7 @@ footer a:hover {
 
 .dropdown-selected {
     background-color: var(--dropdown-background);
-    border: 1px solid var(--dropdown-border);
+    border: 3px solid var(--dropdown-border);
     border-radius: 8px;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -256,10 +256,10 @@ footer a:hover {
     margin-bottom: 1rem;
 }
 
-.color-btn {
+.color-btn, #colorWheelButton {
     width: 32px;
     height: 32px;
-    border: 2px solid var(--dropdown-border);
+    border: 3px solid var(--dropdown-border);
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -272,7 +272,7 @@ footer a:hover {
 }
 
 .color-btn:hover {
-    border-color: #b59781;
+    border: 0px solid var(--dropdown-border);
     box-shadow: 0 0 8px backgroundColor, 0 0 16px backgroundColor;
     transform: scale(1.2);
 }
@@ -289,7 +289,7 @@ footer a:hover {
 #customColorTextField {
     width: calc(96px + 1rem);
     font-family: monospace;
-    border: 2px solid var(--dropdown-border);
+    border: 3px solid var(--dropdown-border);
     border-radius: 8px;
     padding: 4px 8px;
     font-size: 16px;
@@ -304,6 +304,41 @@ footer a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+#colorWheelWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#colorWheelButton {
+    position: relative;
+    z-index: 1;
+}
+
+#colorWheelButton:hover {
+    border: 0px solid var(--dropdown-border);
+    box-shadow: 0 0 8px backgroundColor, 0 0 16px backgroundColor;
+    transform: scale(1.2);
+}
+
+#colorWheelButtonGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    border-radius: 100%;
+    z-index: 0;
+}
+
+#colorWheelWrapper:hover #colorWheelButtonGlow {
+    opacity: 1;
 }
 
 /* MARK: Typing

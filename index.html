@@ -87,9 +87,12 @@
                     <div id="customColorGroup">
                         <button class="color-btn" id="customColorBtn" color-id="customColorBtn" style="background:#000000" title="Custom Color"></button>
                         <input id="customColorTextField" type="text" maxlength="7" placeholder="#RRGGBB" />
-                        <button class="color-btn" id="colorWheelButton" title="Use Color Wheel">
-                            <img src="images/ColorWheel.png" alt="Custom Color">
-                        </button>
+                        <div id="colorWheelWrapper" style="position: relative; display: inline-block;">
+                            <button id="colorWheelButton" title="Use Color Wheel">
+                                <img src="images/ColorWheelSquare.png" alt="Custom Color">
+                            </button>
+                            <img src="images/ColorWheelSquare.png" id="colorWheelButtonGlow">
+                        </div>
                         <input id="customColorPicker" type="color" style="display:none" />
                     </div>
                 </div>
@@ -113,11 +116,11 @@
                     <button class="color-btn" color-id="2A86BA" style="background:#2A86BA" title="Neutral Blue"></button>
                     <button class="color-btn" color-id="3EA49A" style="background:#3EA49A" title="Dark Aqua"></button>
                 </div>
-                <textarea id="messageInput" placeholder="Type your message here..."></textarea>
-                <div id="messageActions">
-                    <button id="copyMessageBtn" title="Copy to clipboard">📋</button>
-                    <span id="charCounter"></span>
-                </div>
+            </div>
+            <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+            <div id="messageActions">
+                <button id="copyMessageBtn" title="Copy to clipboard">📋</button>
+                <span id="charCounter"></span>
             </div>
         </div>
 
