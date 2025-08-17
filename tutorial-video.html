@@ -4,12 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash of Clans Previewer Tutorial Video</title>
+
+    <!-- CSS -->
+    <title>Clash of Clans Message Previewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://db.onlinewebfonts.com/c/474a518c2af0e7ef9a9c17f8648907c0?family=CCBackBeat+W90+Heavy+Italic" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Clash of Clans Message Previewer – Tutorial</h1>
-    <video controls width="1600">
-        <source src="images/Coc-Chat-Message-Previewer-Tutorial.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <header>
+        <a href="https://clashofclans.com" target="_blank" rel="noopener">
+            <img src="images/ClashOfClansLogo.png" alt="Clash of Clans Logo">
+        </a>
+        <div class="header-text">
+            <h1>Clash of Clans Message Previewer</h1>
+            <span>Fan-made tool (unofficial)</span>
+        </div>
+    </header>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-button">⬅ Take Me Back</a>
+        <!-- REMOVED: <a href="tutorial-video.html" class="nav-button">🎬 Tutorial</a> -->
+    </div>
+    
+    <main>
+        <div id="video-tutorial-container">
+            <h2>Tutorial Video</h2>
+            <video controls loop muted autoplay>
+                <source src="images/Coc-Chat-Message-Previewer-Tutorial.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            Tool created by 
+            <a href="https://github.com/Proyolo-ks1" class="author-name" target="_blank" rel="noopener noreferrer">
+                Proyolo-ks1
+            </a> 
+            — unofficial and not affiliated with or endorsed by Supercell or Clash of Clans.  
+            This material is fan-made and is not an official Supercell product.  
+            For Supercell's fan content rules, see 
+            <a href="https://supercell.com/fan-content-policy" target="_blank" rel="noopener noreferrer">Supercell Fan Content Policy</a>.
+        </p>
+        <p>
+            version <span id="version-number">unknown</span>
+            &nbsp;—&nbsp;
+            <a href="https://github.com/Proyolo-ks1/coc-message-previewer/issues" target="_blank" rel="noopener noreferrer">
+                Report bugs or suggest features
+            </a>
+            &nbsp;—&nbsp;
+            <a href="#" id="share-link">Share</a>
+            <span id="copy-feedback" style="display:none; color:green; margin-left: 8px;">Copied!</span>
+        </p>
+    </footer>
+    
+    <script src="scripts/update-changelog-and-version.js"></script>
 </body>
 </html>

@@ -64,6 +64,9 @@ main {
     padding: 2rem;
 }
 
+/* MARK: Header & Footer
+*/
+
 header {
     flex-shrink: 0;
     display: flex;
@@ -110,6 +113,29 @@ footer a:hover {
     color: #ffd266;
 }
 
+/* MARK: Page Navigation
+*/
+.nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* wrap to next line if too narrow */
+    margin: 0.5rem 1rem; /* space from header edges */
+}
+
+.nav-button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: linear-gradient(#b59781, #9b806d);
+    border: 1px solid #9b806d;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-button:hover {
+    background: linear-gradient(#a17f6a, #876956);
+}
 /* MARK: Update Log
 */
 
@@ -171,6 +197,15 @@ footer a:hover {
     font-weight: bold;
 }
 
+.dropdown-selected:hover {
+    background-color: #2e2724; /* a touch darker than #3a312d */
+    border-color: #b59781;     /* highlight border */
+    box-shadow: 0 0 6px #b59781; /* soft glow */
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
 .dropdown-selected:focus {
     outline: 2px solid #9b806d;
 }
@@ -227,7 +262,7 @@ footer a:hover {
     border: 2px solid var(--dropdown-border);
     border-radius: 6px;
     cursor: pointer;
-    transition: border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     padding: 0;
     box-sizing: border-box;
     align-items: center;
@@ -238,6 +273,8 @@ footer a:hover {
 
 .color-btn:hover {
     border-color: #b59781;
+    box-shadow: 0 0 8px backgroundColor, 0 0 16px backgroundColor;
+    transform: scale(1.2);
 }
 
 #customColorGroup {
@@ -475,6 +512,33 @@ footer a:hover {
 }
 
 
+/* MARK: Video Website */
+
+#video-tutorial-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--dropdown-background);
+    line-height: 1.4;
+}
+
+#video-tutorial-container h2{
+    font-size: 2rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#video-tutorial-container video {
+    width: 80%;
+    max-width: 1280px;
+    height: auto;
+    min-height: 240px;
+    display: block;
+    margin: 1rem auto; /* centers video */
+    outline: 5px solid var(--chat-message-other-name);
+}
+
 
 /* MARK: MOBILE
 */
@@ -487,6 +551,11 @@ footer a:hover {
         flex-wrap: nowrap;
         overflow-x: auto;
     }
+    #video-tutorial-container video {
+    width: 100%;
+    min-height: 180px;
+    height: auto;
+}
 }
 
 

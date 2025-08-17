@@ -1,5 +1,11 @@
 [
     {
+        "version": "0.4.4",
+        "date": "2025-08-17",
+        "title": "Video Tutorial Page",
+        "description": "Added a dedicated page with a quick video tutorial explaining how to use the tool."
+    },
+    {
         "version": "0.4.3",
         "date": "2025-08-12",
         "title": "Copy Message Button",

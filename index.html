@@ -42,14 +42,21 @@
             <span>Fan-made tool (unofficial)</span>
         </div>
     </header>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <!-- REMOVED: <a href="index.html" class="nav-button">⬅ Take Me Back</a> -->
+        <a href="tutorial-video.html" class="nav-button">🎬 Tutorial</a>
+    </div>
+
     <main>
         <div class="controls">
             <div class="custom-dropdown">
                 <label>Select message type:</label>
-                <div class="dropdown-selected" tabindex="0">Chat Message (80% Done)</div>
+                <div class="dropdown-selected" tabindex="0">Chat Message (90% Done)</div>
                 <ul class="dropdown-options" tabindex="-1" aria-hidden="true">
                     <li data-value="challenge">Challenge (Soon)</li>
-                    <li data-value="chatmessage" class="selected">Chat Message (80% Done)</li>
+                    <li data-value="chatmessage" class="selected">Chat Message (90% Done)</li>
                     <li data-value="clanmail">Clan Mail (Soon)</li>
                     <li data-value="clandescription">Clan Description (Soon)</li>
                     <li data-value="clanwarletter">Clan War Letter (Soon)</li>
@@ -131,7 +138,7 @@
             <a href="https://supercell.com/fan-content-policy" target="_blank" rel="noopener noreferrer">Supercell Fan Content Policy</a>.
         </p>
         <p>
-            version <span id="version-number">0.4</span>
+            version <span id="version-number">unknown</span>
             &nbsp;—&nbsp;
             <a href="https://github.com/Proyolo-ks1/coc-message-previewer/issues" target="_blank" rel="noopener noreferrer">
                 Report bugs or suggest features
@@ -142,13 +149,7 @@
         </p>
     </footer>
 
-    <!-- overlays
-    <div id="customColorPicker" class="colorpicker-popup" style="display:none;">
-        <button id="closeColorPicker" aria-label="Close color picker">✕</button>
-        <input type="color" id="colorWheel" value="#3EA49A" />
-        <label for="hexInput">Hex Code:</label>
-        <input type="text" id="hexInput" maxlength="6" placeholder="123abc" pattern="[0-9a-fA-F]{6}" />
-    </div> -->
     <script src="script.js"></script>
+    <script src="scripts/update-changelog-and-version.js"></script>
 </body>
 </html>

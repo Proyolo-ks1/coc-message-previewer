@@ -24,36 +24,6 @@ const warning = document.getElementById("charWarning");
 const shareLink = document.getElementById("share-link")
 
 
-// MARK: Update ChangeLog
-fetch('changelog.json')
-    .then(response => response.json())
-    .then(changelog => {
-        const container = document.getElementById('changelog-container');
-        changelog.forEach(entry => {
-        const box = document.createElement('div');
-        box.classList.add('update-box');
-
-        box.innerHTML = `
-            <div style="color: #1a1a1a; font-size: 0.8em; margin-bottom: 0.3em;">${entry.date}</div>
-            <h3 style="color: #eeeeee; font-weight: bold; margin: 0 0 0.3em 0;">${entry.version} — ${entry.title}</h3>
-            <p style="color: #bbbbbb; font-size: 0.9em; margin: 0;">${entry.description}</p>
-        `;
-
-        container.appendChild(box);
-        });
-
-        // Update alleen het versie-nummer
-        const newest = changelog.length > 0 ? changelog[0] : { version: "0.0" };
-        const versionSpan = document.getElementById('version-number');
-        if (versionSpan && newest) {
-            versionSpan.textContent = newest.version;
-        }
-    })
-    .catch(err => {
-        console.error("Failed to load changelog:", err);
-    });
-
-
 
 // MARK: Share Link
 
@@ -118,6 +88,18 @@ document.addEventListener('click', (e) => {
     if (!dropdownSelected.contains(e.target) && !dropdownOptions.contains(e.target)) {
         dropdownOptions.classList.remove('show');
     }
+});
+
+// MARK: Buttons
+
+document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+        const bg = getComputedStyle(btn).backgroundColor;
+        btn.style.boxShadow = `0 0 8px ${bg}, 0 0 16px ${bg}`;
+    });
+    btn.addEventListener('mouseleave', () => {
+        btn.style.boxShadow = '';
+    });
 });
 
 // MARK: InputTextBox
