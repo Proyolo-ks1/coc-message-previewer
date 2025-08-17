@@ -6,3 +6,6 @@ Check it out here: [Clash of Clans Message Previewer](https://proyolo-ks1.github
 
 ## 🖼️ Preview
 [![Clash of Clans Message Previewer Screenshot](images/coc-message-previewer-preview-1280×720.png)](https://proyolo-ks1.github.io/coc-message-previewer/)
+
+## 🎬 Tutorial
+[![Clash of Clans Message Previewer Tutorial](images/Coc-Chat-Message-Previewer-Tutorial.gif)](https://proyolo-ks1.github.io/coc-message-previewer/)
