@@ -9,6 +9,8 @@ if (debug) {
 
 // MARK: Page Elements
 
+const customBg = document.getElementById('custom-background');
+
 const dropdownSelected = document.querySelector('.dropdown-selected');
 const dropdownOptions = document.querySelector('.dropdown-options');
 const options = dropdownOptions.querySelectorAll('li');
@@ -21,7 +23,23 @@ const customColorPicker = document.getElementById("customColorPicker");
 const inputTextBox = document.getElementById("messageInput");
 const charCounter = document.getElementById("charCounter");
 const warning = document.getElementById("charWarning");
+
 const shareLink = document.getElementById("share-link")
+
+
+// MARK: Background
+
+function updateBackgroundPosition() {
+    const windowWidth = window.innerWidth;
+    const treshhold = 1160;
+    let shift = 0;
+    if (windowWidth < treshhold) {
+        shift = 0.5 * (windowWidth - treshhold);
+    }
+    customBg.style.right = `${shift}px`;
+}
+updateBackgroundPosition();
+window.addEventListener('resize', updateBackgroundPosition);
 
 
 

@@ -58,6 +58,7 @@ html, body {
 main {
     flex: 1 1 auto;
     overflow: auto; /* allow internal scroll if needed */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,8 +67,12 @@ main {
     z-index: 1;
 }
 
+/* MARK: Background
+*/
+
 #custom-background {
     position: absolute;   /* inside main, relative to main */
+    overflow-x: hidden;
     top: 0;
     right: 0;
     width: auto;
@@ -79,6 +84,7 @@ main {
 #chatPerspectiveImage {
     height: 90%;         /* scale to container height */
     opacity: 0.3;         /* subtle background effect */
+    overflow-x: hidden;
 }
 
 /* MARK: Header & Footer
@@ -136,7 +142,7 @@ footer a:hover {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap; /* wrap to next line if too narrow */
-    margin: 0.5rem 1rem; /* space from header edges */
+    margin: 0.5rem; /* space from header edges */
 }
 
 .nav-button {
@@ -153,6 +159,7 @@ footer a:hover {
 .nav-button:hover {
     background: linear-gradient(#a17f6a, #876956);
 }
+
 /* MARK: Update Log
 */
 
@@ -178,6 +185,24 @@ footer a:hover {
     border-radius: 6px;
     background-color: var(--chat-message-me-background);
     color: var(--chat-message-default-text);
+}
+
+.update-box-date {
+    color: #1a1a1a;
+    font-size: 0.8em;
+    margin-bottom: 0.3em;
+}
+
+.update-box-title {
+    color: #eeeeee;
+    font-weight: bold;
+    margin: 0 0 0.3em 0;
+}
+
+.update-box-desc {
+    color: #bbbbbb;
+    font-size: 0.9em;
+    margin: 0;
 }
 
 /* MARK: Controls
