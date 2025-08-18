@@ -117,6 +117,8 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         const bg = getComputedStyle(btn).backgroundColor;
         btn.style.boxShadow = `0 0 8px ${bg}, 0 0 16px ${bg}`;
 
+        const titleText = btn.getAttribute('title') || btn.getAttribute('alt') || 'No text';
+
         // Create tooltip
         tooltip = document.createElement('div');
         tooltip.textContent = btn.getAttribute('title') || btn.getAttribute('alt') || 'No text';
@@ -131,6 +133,14 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         tooltip.style.whiteSpace = 'nowrap';
         tooltip.style.pointerEvents = 'none';
         tooltip.style.zIndex = '9999';
+        tooltip.style.borderRadius = '6px';
+
+        // Background depending on title
+        if (titleText === "Textbubble You") {
+            tooltip.style.backgroundColor = 'var(--chat-message-other-background)';
+        } else {
+            tooltip.style.backgroundColor = 'var(--chat-message-me-background)';
+        }
 
         // Position above the button
         const rect = btn.getBoundingClientRect();
@@ -142,8 +152,8 @@ document.querySelectorAll('.color-btn').forEach(btn => {
 
     btn.addEventListener('mousemove', (e) => {
         if (tooltip) {
-            tooltip.style.left = `${e.pageX}px`;
-            tooltip.style.top = `${e.pageY - 30}px`; // stays above cursor
+            tooltip.style.left = `${e.pageX + 5}px`;
+            tooltip.style.top = `${e.pageY - 35}px`; // stays above cursor
         }
     });
 
