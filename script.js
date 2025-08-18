@@ -111,12 +111,48 @@ document.addEventListener('click', (e) => {
 // MARK: Buttons
 
 document.querySelectorAll('.color-btn').forEach(btn => {
+    let tooltip;
+
     btn.addEventListener('mouseenter', () => {
         const bg = getComputedStyle(btn).backgroundColor;
         btn.style.boxShadow = `0 0 8px ${bg}, 0 0 16px ${bg}`;
+
+        // Create tooltip
+        tooltip = document.createElement('div');
+        tooltip.textContent = btn.getAttribute('title') || btn.getAttribute('alt') || 'No text';
+        tooltip.style.position = 'absolute';
+        tooltip.style.border = '3px solid var(--dropdown-border)';
+        tooltip.style.backgroundColor = 'var(--chat-message-me-background)';
+        tooltip.style.fontFamily = '"CCBackBeat W90 Heavy Italic", sans-serif';
+        tooltip.style.fontSize = '1rem';
+        tooltip.style.color = bg;
+        tooltip.style.letterSpacing = '0.03em';
+        tooltip.style.padding = '0.25rem 0.5rem';
+        tooltip.style.whiteSpace = 'nowrap';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.style.zIndex = '9999';
+
+        // Position above the button
+        const rect = btn.getBoundingClientRect();
+        tooltip.style.left = `${rect.left + window.scrollX}px`;
+        tooltip.style.top = `${rect.top + window.scrollY - 30}px`;
+
+        document.body.appendChild(tooltip);
     });
+
+    btn.addEventListener('mousemove', (e) => {
+        if (tooltip) {
+            tooltip.style.left = `${e.pageX}px`;
+            tooltip.style.top = `${e.pageY - 30}px`; // stays above cursor
+        }
+    });
+
     btn.addEventListener('mouseleave', () => {
         btn.style.boxShadow = '';
+        if (tooltip) {
+            tooltip.remove();
+            tooltip = null;
+        }
     });
 });
 
