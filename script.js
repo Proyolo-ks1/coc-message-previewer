@@ -432,7 +432,7 @@ function updatePreview() {
         // MARK: > HTML: Clan War Letter
         case 'clanwarletter':
             previewHtmlText = `
-                <h3>Clan Description</h3>
+                <h3>Clan War Letter</h3>
                 <div class="preview-clan-war-letter">
                     <div class="letter">${formattedText}</div>
                 </div>

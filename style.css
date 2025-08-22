@@ -314,8 +314,6 @@ footer a:hover {
 }
 
 .color-btn:hover {
-    border: 0px solid var(--dropdown-border);
-    box-shadow: 0 0 8px backgroundColor, 0 0 16px backgroundColor;
     transform: scale(1.2);
 }
 
