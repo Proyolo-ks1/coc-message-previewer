@@ -67,6 +67,17 @@ main {
     z-index: 1;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
 /* MARK: Background
 */
 
@@ -387,6 +398,45 @@ footer a:hover {
 #colorWheelWrapper:hover #colorWheelButtonGlow {
     opacity: 1;
 }
+
+#customColorPicker {
+    display: none;
+}
+
+/* MARK: Controls > Buttons
+*/
+
+/* First row */
+.color-btn[color-id="0"] { background: #000000; }
+.color-btn[color-id="1"] { background: #FFFFFF; }
+.color-btn[color-id="2"] { background: #FF0000; }
+.color-btn[color-id="3"] { background: #00FF00; }
+.color-btn[color-id="4"] { background: #0000FF; }
+.color-btn[color-id="5"] { background: #00FFFF; }
+.color-btn[color-id="6"] { background: #FF00FF; }
+.color-btn[color-id="7"] { background: #FFFF00; }
+.color-btn[color-id="9"] { background: #bf1238; }
+
+/* Custom color button */
+.color-btn[color-id="customColorBtn"] { background: #000000; }
+
+/* Second row */
+.color-btn[color-id="fc6e78"] { background: #fc6e78; }
+.color-btn[color-id="70de00"] { background: #70de00; }
+.color-btn[color-id="5cb7f8"] { background: #5cb7f8; }
+.color-btn[color-id="c48af0"] { background: #c48af0; }
+.color-btn[color-id="fca85c"] { background: #fca85c; }
+.color-btn[color-id="f8f06e"] { background: #f8f06e; }
+.color-btn[color-id="52d1c4"] { background: #52d1c4; }
+.color-btn[color-id="34302E"] { background: #34302E; }
+.color-btn[color-id="5F5651"] { background: #5F5651; }
+.color-btn[color-id="9C862B"] { background: #9C862B; }
+.color-btn[color-id="FFC000"] { background: #FFC000; }
+.color-btn[color-id="DAE94D"] { background: #DAE94D; }
+.color-btn[color-id="90B2E8"] { background: #90B2E8; }
+.color-btn[color-id="2A86BA"] { background: #2A86BA; }
+.color-btn[color-id="3EA49A"] { background: #3EA49A; }
+
 
 /* MARK: Typing
 */

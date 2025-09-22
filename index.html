@@ -79,48 +79,48 @@
             <div id="coloring">
                 <div id="presetColorButtons">
                     <!-- First row -->
-                    <button class="color-btn" color-id="0" style="background:#000000" title="Black"></button>
-                    <button class="color-btn" color-id="1" style="background:#FFFFFF" title="White"></button>
-                    <button class="color-btn" color-id="2" style="background:#FF0000" title="Red"></button>
-                    <button class="color-btn" color-id="3" style="background:#00FF00" title="Green"></button>
-                    <button class="color-btn" color-id="4" style="background:#0000FF" title="Blue"></button>
-                    <button class="color-btn" color-id="5" style="background:#00FFFF" title="Aqua"></button>
-                    <button class="color-btn" color-id="6" style="background:#FF00FF" title="Magenta"></button>
-                    <button class="color-btn" color-id="7" style="background:#FFFF00" title="Yellow"></button>
-                    <button class="color-btn" color-id="9" style="background:#bf1238" title="Dark Red"></button>
+                    <button type="button" class="color-btn" color-id="0" title="Black"></button>
+                    <button type="button" class="color-btn" color-id="1" title="White"></button>
+                    <button type="button" class="color-btn" color-id="2" title="Red"></button>
+                    <button type="button" class="color-btn" color-id="3" title="Green"></button>
+                    <button type="button" class="color-btn" color-id="4" title="Blue"></button>
+                    <button type="button" class="color-btn" color-id="5" title="Aqua"></button>
+                    <button type="button" class="color-btn" color-id="6" title="Magenta"></button>
+                    <button type="button" class="color-btn" color-id="7" title="Yellow"></button>
+                    <button type="button" class="color-btn" color-id="9" title="Dark Red"></button>
 
                     <!-- Custom color segment -->
                     <div id="customColorGroup">
-                        <button class="color-btn" id="customColorBtn" color-id="customColorBtn" style="background:#000000" title="Custom Color"></button>
+                        <button class="color-btn" id="customColorBtn" color-id="customColorBtn" title="Custom Color"></button>
                         <input id="customColorTextField" type="text" maxlength="7" placeholder="#RRGGBB" />
-                        <div id="colorWheelWrapper" style="position: relative; display: inline-block;">
+                        <div id="colorWheelWrapper">
                             <button id="colorWheelButton" title="Use Color Wheel">
                                 <img src="images/ColorWheelSquare.png" alt="Custom Color">
                             </button>
                             <img src="images/ColorWheelSquare.png" id="colorWheelButtonGlow" alt="Custom Color Button Glow Effect">
                         </div>
-                        <input id="customColorPicker" type="color" style="display:none" />
+                        <label for="customColorPicker" class="visually-hidden">Choose a custom color</label>
+                        <input id="customColorPicker" type="color" value="#808080" class="visually-hidden" />
                     </div>
                 </div>
 
                 <!-- Second row -->
                 <div id="customColorsButtons">
-                    <button class="color-btn" color-id="fc6e78" style="background:#fc6e78" title="Official Red"></button>
-                    <button class="color-btn" color-id="70de00" style="background:#70de00" title="Official Green"></button>
-                    <button class="color-btn" color-id="5cb7f8" style="background:#5cb7f8" title="Sky Blue"></button>
-                    <button class="color-btn" color-id="c48af0" style="background:#c48af0" title="Soft Purple"></button>
-                    <button class="color-btn" color-id="fca85c" style="background:#fca85c" title="Peach Orange"></button>
-                    <button class="color-btn" color-id="f8f06e" style="background:#f8f06e" title="Lemon Yellow"></button>
-                    <button class="color-btn" color-id="52d1c4" style="background:#52d1c4" title="Fresh Teal"></button>
-
-                    <button class="color-btn" color-id="34302E" style="background:#34302E" title="Textbubble Other"></button>
-                    <button class="color-btn" color-id="5F5651" style="background:#5F5651" title="Textbubble You"></button>
-                    <button class="color-btn" color-id="9C862B" style="background:#9C862B" title="Dark Gold"></button>
-                    <button class="color-btn" color-id="FFC000" style="background:#FFC000" title="Gold"></button>
-                    <button class="color-btn" color-id="DAE94D" style="background:#DAE94D" title="Neutral Yellow"></button>
-                    <button class="color-btn" color-id="90B2E8" style="background:#90B2E8" title="Neutral Grayish Blue"></button>
-                    <button class="color-btn" color-id="2A86BA" style="background:#2A86BA" title="Neutral Blue"></button>
-                    <button class="color-btn" color-id="3EA49A" style="background:#3EA49A" title="Dark Aqua"></button>
+                    <button type="button" class="color-btn" color-id="fc6e78" title="Official Red"></button>
+                    <button type="button" class="color-btn" color-id="70de00" title="Official Green"></button>
+                    <button type="button" class="color-btn" color-id="5cb7f8" title="Sky Blue"></button>
+                    <button type="button" class="color-btn" color-id="c48af0" title="Soft Purple"></button>
+                    <button type="button" class="color-btn" color-id="fca85c" title="Peach Orange"></button>
+                    <button type="button" class="color-btn" color-id="f8f06e" title="Lemon Yellow"></button>
+                    <button type="button" class="color-btn" color-id="52d1c4" title="Fresh Teal"></button>
+                    <button type="button" class="color-btn" color-id="34302E" title="Textbubble Other"></button>
+                    <button type="button" class="color-btn" color-id="5F5651" title="Textbubble You"></button>
+                    <button type="button" class="color-btn" color-id="9C862B" title="Dark Gold"></button>
+                    <button type="button" class="color-btn" color-id="FFC000" title="Gold"></button>
+                    <button type="button" class="color-btn" color-id="DAE94D" title="Neutral Yellow"></button>
+                    <button type="button" class="color-btn" color-id="90B2E8" title="Neutral Grayish Blue"></button>
+                    <button type="button" class="color-btn" color-id="2A86BA" title="Neutral Blue"></button>
+                    <button type="button" class="color-btn" color-id="3EA49A" title="Dark Aqua"></button>
                 </div>
             </div>
             <textarea id="messageInput" placeholder="Type your message here..."></textarea>
@@ -161,7 +161,7 @@
             </a>
             &nbsp;—&nbsp;
             <a href="#" id="share-link">Share</a>
-            <span id="copy-feedback" style="display:none; color:green; margin-left: 8px;">Copied!</span>
+            <span id="copy-feedback">Copied!</span>
         </p>
     </footer>
 
