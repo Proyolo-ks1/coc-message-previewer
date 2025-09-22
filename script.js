@@ -365,7 +365,7 @@ function updatePreview() {
     }
 
     let formattedText;
-    if (messageType == 'chatmessage') {
+    if (messageType == 'chat-message') {
         formattedText = formatTextChatMessage(displayText);
     } else {
         formattedText = formatTextNoFormat(displayText);
