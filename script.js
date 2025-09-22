@@ -239,11 +239,11 @@ document.getElementById("copyMessageBtn").addEventListener("click", () => {
 
 const charLimits = {
     "challenge": 80,
-    "chatmessage": 128,
-    "clanmail": 256,
-    "clandescription": 251,
-    "clanwarletter": 160,
-    "trooprequest": 154,
+    "chat-message": 128,
+    "clan-mail": 256,
+    "clan-description": 251,
+    "clan-war-letter": 160,
+    "troop-request": 154,
 };
 
 function handleInputChange() {
@@ -377,92 +377,18 @@ function updatePreview() {
     const timeAgo = '10m';
     const pinned = false;
 
-    // Customize preview depending on messageType
-    switch(messageType) {
-        // MARK: > HTML: Chat Message
-        case 'chatmessage':
-            previewHtmlText = `
-                <div class="clan-chat">
-                    <div class="preview-chat-message preview-chat-message-other">
-                        <div class="message-player">
-                            <img src="images/Leagues/Champion2.png" class="message-player-league-icon" alt="League Icon" />
-                            <div class="message-player-name">${nameOther}</div>
-                        </div>
-                        <div class="chat-message-bubble preview-chat-message-bubble-other">
-                            <div class="message-bubble-role">${role}</div>
-                            <div class="message-bubble-body">${formattedText}</div>
-                            <div class="message-bubble-age">${timeAgo}</div>
-                        </div>
-                    </div>
-                    <div class="preview-chat-message preview-chat-message-me">
-                        <div class="message-player">
-                            <img src="images/Leagues/Titan3.png" class="message-player-league-icon" alt="League Icon" />
-                            <div class="message-player-name">${nameMe}</div>
-                        </div>
-                        <div class="chat-message-bubble preview-chat-message-bubble-me">
-                            <div class="message-bubble-role">${role}</div>
-                            <div class="message-bubble-body">${formattedText}</div>
-                            <div class="message-bubble-age">${timeAgo}</div>
-                        </div>
-                    </div>
-                </div>
-                `;
-            break;
-
-        // MARK: > HTML: Clan Mail
-        case 'clanmail':
-            previewHtmlText = `
-                <h3>Clan Mail</h3>
-                <div class="preview-clan-mail">
-                    <div class="mail-body">${formattedText}</div>
-                </div>
-                `;
-            break;
-
-        // MARK: > HTML: Clan Description
-        case 'clandescription':
-            previewHtmlText = `
-                <h3>Clan Description</h3>
-                <div class="preview-clan-description">
-                    <div class="letter">${formattedText}</div>
-                </div>
-                `;
-            break;
-
-        // MARK: > HTML: Clan War Letter
-        case 'clanwarletter':
-            previewHtmlText = `
-                <h3>Clan War Letter</h3>
-                <div class="preview-clan-war-letter">
-                    <div class="letter">${formattedText}</div>
-                </div>
-                `;
-            break;
-
-        // MARK: > HTML: Troop Request
-        case 'trooprequest':
-            previewHtmlText = `
-                <h3>Troop Request</h3>
-                <div class="preview-troop-request">
-                    <div class="message">${formattedText}</div>
-                </div>
-                `;
-            break;
-
-        // MARK: > HTML: Friendly Challenge
-        case 'challenge':
-            previewHtmlText = `
-                <h3>Challenge</h3>
-                <div class="preview-challenge">
-                    <div class="challenge-message">${formattedText}</div>
-                </div>
-                `;
-            break;
-
-        default:
-            previewHtmlText = `<div>${formattedText}</div>`;
-    }
-    document.getElementById("previewBox").innerHTML = previewHtmlText;
+    // Load preview depending on messageType
+    const path = `preview-files/${messageType}.html`;
+    fetch(path)
+        .then(response => response.text())
+        .then(html => {
+            html = html.replace(/\${formattedText}/g, formattedText);
+            document.getElementById("previewBox").innerHTML = html;
+        })
+        .catch(err => {
+            console.error(`Failed to load preview for ${messageType}:`, err);
+            document.getElementById("previewBox").innerHTML = `<div>${formattedText}</div>`;
+        });
 }
 
 // MARK: Run Once
