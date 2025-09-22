@@ -1,0 +1,85 @@
+    switch(messageType) {
+        // MARK: > HTML: Chat Message
+        case 'chat-message':
+            previewHtmlText = `
+                <div class="clan-chat">
+                    <div class="preview-chat-message preview-chat-message-other">
+                        <div class="message-player">
+                            <img src="images/Leagues/Champion2.png" class="message-player-league-icon" alt="League Icon" />
+                            <div class="message-player-name">${nameOther}</div>
+                        </div>
+                        <div class="chat-message-bubble preview-chat-message-bubble-other">
+                            <div class="message-bubble-role">${role}</div>
+                            <div class="message-bubble-body">${formattedText}</div>
+                            <div class="message-bubble-age">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="preview-chat-message preview-chat-message-me">
+                        <div class="message-player">
+                            <img src="images/Leagues/Titan3.png" class="message-player-league-icon" alt="League Icon" />
+                            <div class="message-player-name">${nameMe}</div>
+                        </div>
+                        <div class="chat-message-bubble preview-chat-message-bubble-me">
+                            <div class="message-bubble-role">${role}</div>
+                            <div class="message-bubble-body">${formattedText}</div>
+                            <div class="message-bubble-age">${timeAgo}</div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            break;
+
+        // MARK: > HTML: Clan Mail
+        case 'clan-mail':
+            previewHtmlText = `
+                <h3>Clan Mail</h3>
+                <div class="preview-clan-mail">
+                    <div class="mail-body">${formattedText}</div>
+                </div>
+                `;
+            break;
+
+        // MARK: > HTML: Clan Description
+        case 'clan-description':
+            previewHtmlText = `
+                <h3>Clan Description</h3>
+                <div class="preview-clan-description">
+                    <div class="letter">${formattedText}</div>
+                </div>
+                `;
+            break;
+
+        // MARK: > HTML: Clan War Letter
+        case 'clan-war-letter':
+            previewHtmlText = `
+                <h3>Clan War Letter</h3>
+                <div class="preview-clan-war-letter">
+                    <div class="letter">${formattedText}</div>
+                </div>
+                `;
+            break;
+
+        // MARK: > HTML: Troop Request
+        case 'troop-request':
+            previewHtmlText = `
+                <h3>Troop Request</h3>
+                <div class="preview-troop-request">
+                    <div class="message">${formattedText}</div>
+                </div>
+                `;
+            break;
+
+        // MARK: > HTML: Friendly Challenge
+        case 'challenge':
+            previewHtmlText = `
+                <h3>Challenge</h3>
+                <div class="preview-challenge">
+                    <div class="challenge-message">${formattedText}</div>
+                </div>
+                `;
+            break;
+
+        default:
+            previewHtmlText = `<div>${formattedText}</div>`;
+    }
+    document.getElementById("previewBox").innerHTML = previewHtmlText;

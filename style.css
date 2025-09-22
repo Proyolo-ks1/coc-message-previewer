@@ -136,6 +136,12 @@ footer a:hover {
     color: #ffd266;
 }
 
+#copy-feedback {
+    display:none;
+    color:green;
+    margin-left: 8px;
+}
+
 /* MARK: Page Navigation
 */
 .nav-buttons {
@@ -226,7 +232,8 @@ footer a:hover {
     margin-bottom: 1rem;
     font-family: 'Clash', sans-serif;
     position: relative;
-    user-select: none;
+    -webkit-user-select: none; /* Safari & iOS */
+    user-select: none;         /* Standard */
 }
 
 .dropdown-selected {
