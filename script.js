@@ -350,6 +350,12 @@ function getSelectedMessageType() {
     return selected ? selected.getAttribute('data-value') : 'chatmessage';
 }
 
+function renderTemplate(template, data) {
+    return new Function("data", 
+        "with (data) { return `" + template + "`; }"
+    )(data);
+    }
+
 // MARK: updatePreview()
 function updatePreview() {
     const input = document.getElementById("messageInput").value;
@@ -371,23 +377,26 @@ function updatePreview() {
         formattedText = formatTextNoFormat(displayText);
     }
     
-    const nameOther = 'Other Guy';
-    const nameMe = 'You'; 
-    const role = 'Co-Leader';
-    const timeAgo = '10m';
-    const pinned = false;
+    const data = {
+        nameOther: 'Other Guy',
+        nameMe: 'You',
+        role: 'Co-Leader',
+        timeAgo: '10m',
+        pinned: false,
+        formattedText: formattedText
+    };
 
     // Load preview depending on messageType
     const path = `preview-files/${messageType}.html`;
     fetch(path)
         .then(response => response.text())
         .then(html => {
-            html = html.replace(/\${formattedText}/g, formattedText);
+            html = renderTemplate(html, data);
             document.getElementById("previewBox").innerHTML = html;
         })
         .catch(err => {
             console.error(`Failed to load preview for ${messageType}:`, err);
-            document.getElementById("previewBox").innerHTML = `<div>${formattedText}</div>`;
+            document.getElementById("previewBox").innerHTML = `<div>Failed to load preview for ${messageType}: ${err}</div><div>${formattedText}</div>`;
         });
 }
 
