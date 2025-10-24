@@ -93,6 +93,9 @@ options.forEach(option => {
         // Update displayed value
         dropdownSelected.textContent = option.textContent;
 
+        // Save selection to localStorage
+        localStorage.setItem('selectedMessageType', option.getAttribute('data-value'));
+
         // Close options
         dropdownOptions.classList.remove('show');
 
@@ -107,6 +110,23 @@ document.addEventListener('click', (e) => {
         dropdownOptions.classList.remove('show');
     }
 });
+
+// Restore Dropdown Selection
+function restoreDropdownSelection() {
+    const savedType = localStorage.getItem('selectedMessageType');
+    if (savedType) {
+        const savedOption = dropdownOptions.querySelector(`li[data-value="${savedType}"]`);
+        if (savedOption) {
+            // Remove current selection
+            const current = dropdownOptions.querySelector('li.selected');
+            if (current) current.classList.remove('selected');
+
+            // Set saved selection
+            savedOption.classList.add('selected');
+            dropdownSelected.textContent = savedOption.textContent;
+        }
+    }
+}
 
 // MARK: Buttons
 
@@ -262,7 +282,7 @@ function handleInputChange() {
     charCounter.textContent = text;
     charCounter.style.color = color;
 
-    updatePreview();
+    updatePreview(messageType);
 };
 
 // MARK: > Formatting
@@ -357,9 +377,8 @@ function renderTemplate(template, data) {
     }
 
 // MARK: updatePreview()
-function updatePreview() {
+function updatePreview(messageType) {
     const input = document.getElementById("messageInput").value;
-    const messageType = getSelectedMessageType();
     const charLimit = charLimits[messageType]
 
     let displayText = input;
@@ -402,7 +421,8 @@ function updatePreview() {
 
 // MARK: Run Once
 window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("messageInput").addEventListener("input", handleInputChange);
+    restoreDropdownSelection();
     handleInputChange();
+    document.getElementById("messageInput").addEventListener("input", handleInputChange);
     customColorTextField.dispatchEvent(new Event("input"));
 });

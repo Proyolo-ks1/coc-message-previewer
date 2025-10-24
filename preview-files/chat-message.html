@@ -1,24 +1,42 @@
+<!-- Clan Chat Preview Container -->
 <div class="clan-chat">
+
+    <!-- Message from Other Player -->
     <div class="preview-chat-message preview-chat-message-other">
+        
+        <!-- Player Info (Name + League Icon) -->
         <div class="message-player">
-            <img src="images/Leagues/Champion2.png" class="message-player-league-icon" alt="League Icon" />
+            <img src="images/Leagues/Champion2.png" 
+                class="message-player-league-icon" 
+                alt="League Icon" />
             <div class="message-player-name">${nameOther}</div>
         </div>
+
+        <!-- Message Bubble -->
         <div class="chat-message-bubble preview-chat-message-bubble-other">
             <div class="message-bubble-role">${role}</div>
             <div class="message-bubble-body">${formattedText}</div>
             <div class="message-bubble-age">${timeAgo}</div>
         </div>
     </div>
+
+    <!-- Message from Me -->
     <div class="preview-chat-message preview-chat-message-me">
+
+        <!-- Player Info (Name + League Icon) -->
         <div class="message-player">
-            <img src="images/Leagues/Titan3.png" class="message-player-league-icon" alt="League Icon" />
+            <img src="images/Leagues/Titan3.png" 
+                class="message-player-league-icon" 
+                alt="League Icon" />
             <div class="message-player-name">${nameMe}</div>
         </div>
+
+        <!-- Message Bubble -->
         <div class="chat-message-bubble preview-chat-message-bubble-me">
             <div class="message-bubble-role">${role}</div>
             <div class="message-bubble-body">${formattedText}</div>
             <div class="message-bubble-age">${timeAgo}</div>
         </div>
     </div>
+
 </div>

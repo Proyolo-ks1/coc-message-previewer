@@ -1,5 +1,11 @@
 [
     {
+        "version": "0.4.6",
+        "date": "2025-10-24",
+        "title": "Clan War Letters are here!",
+        "description": "Added a new preview type: Clan War Letter. Try it out now! But note, just like the in-game clan war letters, these do not support colored text..."
+    },
+    {
         "version": "0.4.5",
         "date": "2025-08-18",
         "title": "Color Preview Popup",

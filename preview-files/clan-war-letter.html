@@ -1,4 +1,36 @@
-<h3>Clan War Letter</h3>
 <div class="preview-clan-war-letter">
-    ${formattedText}
+
+    <!-- === Top Button: Collapse Note === -->
+    <div class="button-collapse-note">
+        <img src="images/ui-elements/Button-ClanWarCollapseNote.png" 
+            alt="Collapse Note" />
+    </div>
+
+    <!-- === White Box Section (Main Container) === -->
+    <div class="clan-war-white-box">
+
+        <!-- -- Claim Target Row (Top of White Box) -- -->
+        <div class="claim-target">
+            <!-- Claim Target Icon -->
+            <img src="images/ui-elements/Button-ClanWarClaimTarget.png" 
+                alt="Claim Target" />
+
+            <!-- Claim Target Text -->
+            <span class="claim-target-text">Claim target</span>
+        </div>
+
+        <!-- -- Gray Inner Box (Letter Content Area) -- -->
+        <div class="clan-war-note-box">
+
+            <!-- Edit Note Icon (Top corner) -->
+            <img src="images/ui-elements/Button-ClanWarEditNote.png" 
+                alt="Edit Note" 
+                class="button-edit-note" />
+
+            <!-- Main Text Content -->
+            <div class="clan-war-text">
+                ${formattedText}
+            </div>
+        </div>
+    </div>
 </div>
