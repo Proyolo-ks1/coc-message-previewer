@@ -279,7 +279,7 @@ footer a:hover {
     border-radius: 8px;
     position: absolute;
     width: 100%;
-    max-height: 180px;
+    max-height: 300px;
     overflow-y: auto;
     box-sizing: border-box;
     display: none; /* hidden by default */
@@ -654,6 +654,37 @@ footer a:hover {
     width: auto;
 }
 
+.floating-clan-war-letter-wrapper {
+    position: absolute;
+    top: 0;
+    left: 34%;
+    width: 40px;
+    height: 40px;
+}
+
+.floating-clan-war-letter-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -45%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(238, 56, 24) 0%, rgba(255,165,0,0) 70%);
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.floating-clan-war-letter-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: auto;
+    z-index: 1; /* above the glow */
+}
+
 /* White Box */
 .clan-war-white-box {
     background-color: #e7e7df;
@@ -663,21 +694,21 @@ footer a:hover {
     padding: 10px 10px 0 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     height: 250px;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.4);
 }
 
 /* Claim Target Row */
-.claim-target {
+.claim-target-row {
     flex: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
     margin-left: 10px;
 }
 
-.claim-target img {
+.claim-target-row img {
     height: 2.5rem;
     width: auto;
 }
@@ -699,17 +730,35 @@ footer a:hover {
     padding: 10px;
     box-sizing: border-box;
     color: #cbcbcb;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.button-edit-note {
+/* Edit Note Row */
+.edit-note-row {
+    flex: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-note-row img {
     top: 0;
     left: 0;
     height: 2.5rem;
     width: auto;
 }
 
+.last-edited-text {
+    color: #656565;
+    font-size: 1rem;
+    font-family: 'CCBackBeat W90 Heavy Italic', sans-serif;
+    letter-spacing: 0.03em;
+}
+
 /* Text inside note box */
-.clan-war-note-text {
+.edit-note-box-text {
     font-size: 1rem;
     word-wrap: break-word;
     font-family: 'CCBackBeat W90 Heavy Italic', sans-serif;

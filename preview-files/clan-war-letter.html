@@ -1,34 +1,45 @@
 <div class="preview-clan-war-letter">
 
-    <!-- === Top Button: Collapse Note === -->
+    <!-- Top Button: Collapse Note -->
     <div class="button-collapse-note">
         <img src="images/ui-elements/Button-ClanWarCollapseNote.png" 
             alt="Collapse Note" />
+        <div class="floating-clan-war-letter-wrapper">
+            <div class="floating-clan-war-letter-glow"></div>
+            <img src="images/ui-elements/icon-clanwarletter.png" 
+                alt="Clan War Icon" 
+                class="floating-clan-war-letter-icon" />
+        </div>
     </div>
 
-    <!-- === White Box Section (Main Container) === -->
+    <!-- White Box Section (Main Container) -->
     <div class="clan-war-white-box">
 
-        <!-- -- Claim Target Row (Top of White Box) -- -->
-        <div class="claim-target">
-            <!-- Claim Target Icon -->
+        <!-- Claim Target Row -->
+        <div class="claim-target-row">
+            <!-- Button: Claim Target -->
             <img src="images/ui-elements/Button-ClanWarClaimTarget.png" 
-                alt="Claim Target" />
+                alt="unrealButton Claim Target" />
 
             <!-- Claim Target Text -->
             <span class="claim-target-text">Claim target</span>
         </div>
 
-        <!-- -- Gray Inner Box (Letter Content Area) -- -->
+        <!-- Clan War Note Box -->
         <div class="clan-war-note-box">
+            
+            <!-- Edit Note Row -->
+            <div class="edit-note-row">
+                <!-- Button: Edit Note -->
+                <img src="images/ui-elements/Button-ClanWarEditNote.png" 
+                    alt="unrealButton Edit Note" />
 
-            <!-- Edit Note Icon (Top corner) -->
-            <img src="images/ui-elements/Button-ClanWarEditNote.png" 
-                alt="Edit Note" 
-                class="button-edit-note" />
+                <!-- Last Edited Text -->
+                <span class="last-edited-text">Last edited by: ${nameMe}</span>
+            </div>
 
             <!-- Main Text Content -->
-            <div class="clan-war-text">
+            <div class="edit-note-box-text">
                 ${formattedText}
             </div>
         </div>
