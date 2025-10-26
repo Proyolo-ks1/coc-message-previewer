@@ -128,7 +128,13 @@ function restoreDropdownSelection() {
     }
 }
 
-// MARK: Buttons
+// MARK: getSelectedMessageType()
+function getSelectedMessageType() {
+    const selected = document.querySelector('.dropdown-options li.selected');
+    return selected ? selected.getAttribute('data-value') : 'chatmessage';
+}
+
+// MARK: Color Button Tooltip
 
 document.querySelectorAll('.color-btn').forEach(btn => {
     let tooltip;
@@ -255,36 +261,6 @@ document.getElementById("copyMessageBtn").addEventListener("click", () => {
     });
 });
 
-// MARK: Preview
-
-const charLimits = {
-    "challenge": 80,
-    "chat-message": 128,
-    "clan-mail": 256,
-    "clan-description": 251,
-    "clan-war-letter": 160,
-    "troop-request": 154,
-};
-
-function handleInputChange() {
-    const messageType = getSelectedMessageType();
-    const charLimit = charLimits[messageType]
-    const currentChars = inputTextBox.value.length
-
-    let text = `${currentChars}/${charLimit}`;
-    let color = "rgb(127,127,127)";
-
-    if (currentChars > charLimit) {
-        text += " - Maximum of " + charLimit + " characters reached!";
-        color = "red";
-    }
-
-    charCounter.textContent = text;
-    charCounter.style.color = color;
-
-    updatePreview(messageType);
-};
-
 // MARK: > Formatting
 function formatTextChatMessage(text) {
 
@@ -364,65 +340,113 @@ function formatTextNoFormat(text) {
     return escapeHTML(text).replace(/\n/g, "<br>");
 }
 
-// MARK: getSelectedMessageType()
-function getSelectedMessageType() {
-    const selected = document.querySelector('.dropdown-options li.selected');
-    return selected ? selected.getAttribute('data-value') : 'chatmessage';
+// MARK: Preview
+
+const charLimits = {
+    "challenge": 80,
+    "chat-message": 128,
+    "clan-mail": 256,
+    "clan-description": 251,
+    "clan-war-letter": 160,
+    "troop-request": 154,
+};
+
+function handleInputChange() {
+    const messageType = getSelectedMessageType();
+    const charLimit = charLimits[messageType]
+    const currentChars = inputTextBox.value.length
+
+    let text = `${currentChars}/${charLimit}`;
+    let color = "rgb(127,127,127)";
+
+    if (currentChars > charLimit) {
+        text += " - Maximum of " + charLimit + " characters reached!";
+        color = "red";
+    }
+
+    charCounter.textContent = text;
+    charCounter.style.color = color;
+
+    updatePreview();
+};
+
+const loadedPreviews = {}; // cache loaded previews
+
+// Preload everything on page load
+function preloadAllPreviews() {
+    const types = Object.keys(charLimits);
+    const promises = types.map(messageType =>
+        fetch(`preview-files/${messageType}.html`)
+            .then(res => res.text())
+            .then(html => {
+                loadedPreviews[messageType] = { html };
+
+                // CSS HEAD check
+                fetch(`preview-files/${messageType}.css`, { method: 'HEAD' })
+                    .then(res => {
+                        if (res.ok) loadedPreviews[messageType].cssHref = `preview-files/${messageType}.css`;
+                    });
+
+                // JS HEAD check
+                fetch(`preview-files/${messageType}.js`, { method: 'HEAD' })
+                    .then(res => {
+                        if (res.ok) loadedPreviews[messageType].jsPath = `preview-files/${messageType}.js`;
+                    });
+            })
+    );
+    return Promise.all(promises);
 }
 
 function renderTemplate(template, data) {
     return new Function("data", 
         "with (data) { return `" + template + "`; }"
     )(data);
-    }
-
-// MARK: updatePreview()
-function updatePreview(messageType) {
-    const input = document.getElementById("messageInput").value;
-    const charLimit = charLimits[messageType]
-
-    let displayText = input;
-    let isTruncated = false;
-
-    if (input.length > charLimit) {
-        displayText = input.substring(0, charLimit);
-        isTruncated = true;
-    }
-
-    let formattedText;
-    if (messageType == 'chat-message') {
-        formattedText = formatTextChatMessage(displayText);
-    } else {
-        formattedText = formatTextNoFormat(displayText);
-    }
-    
-    const data = {
-        nameOther: 'Other Guy',
-        nameMe: 'You',
-        role: 'Co-Leader',
-        timeAgo: '10m',
-        pinned: false,
-        formattedText: formattedText
-    };
-
-    // Load preview depending on messageType
-    const path = `preview-files/${messageType}.html`;
-    fetch(path)
-        .then(response => response.text())
-        .then(html => {
-            html = renderTemplate(html, data);
-            document.getElementById("previewBox").innerHTML = html;
-        })
-        .catch(err => {
-            console.error(`Failed to load preview for ${messageType}:`, err);
-            document.getElementById("previewBox").innerHTML = `<div>Failed to load preview for ${messageType}: ${err}</div><div>${formattedText}</div>`;
-        });
 }
 
-// MARK: Run Once
+// MARK: updatePreview()
+function updatePreview() {
+    const messageType = getSelectedMessageType();
+    const input = document.getElementById("messageInput").value;
+    const charLimit = charLimits[messageType];
+    let displayText = input.substring(0, charLimit);
+
+    const formattedText = messageType === 'chat-message'
+        ? formatTextChatMessage(displayText)
+        : formatTextNoFormat(displayText);
+
+    const data = { nameOther:'Other Guy', nameMe:'You', role:'Co-Leader', timeAgo:'10m', pinned:false, formattedText };
+
+    const cached = loadedPreviews[messageType];
+    if (!cached) return console.warn(`Preview for ${messageType} not preloaded yet`);
+
+    document.getElementById("previewBox").innerHTML = renderTemplate(cached.html, data);
+
+    if (cached.cssHref) {
+        let oldLink = document.getElementById('preview-css');
+        if (oldLink) oldLink.remove();
+        const link = document.createElement('link');
+        link.id = 'preview-css';
+        link.rel = 'stylesheet';
+        link.href = cached.cssHref;
+        document.head.appendChild(link);
+    }
+
+    if (cached.jsPath && !cached.jsLoaded) {
+        const script = document.createElement('script');
+        script.src = cached.jsPath;
+        script.type = 'module';
+        document.body.appendChild(script);
+        cached.jsLoaded = true;
+    }
+}
+
+// MARK: DOM ready
 window.addEventListener('DOMContentLoaded', () => {
-    restoreDropdownSelection();
-    handleInputChange();
-    document.getElementById("messageInput").addEventListener("input", handleInputChange);
-    customColorTextField.dispatchEvent(new Event("input"));
+    preloadAllPreviews().then(() => {
+        // Executed once all previews are loaded
+        restoreDropdownSelection();
+        handleInputChange();
+        document.getElementById("messageInput").addEventListener("input", handleInputChange);
+        customColorTextField.dispatchEvent(new Event("input"));
+    });
 });
