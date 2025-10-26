@@ -275,7 +275,6 @@ function formatTextChatMessage(text) {
             }
         });
     }
-    const withLineBreaks = escapeHTML(text).replace(/\n/g, "<br>");
 
     const presetColors = {
         "0": "#000000", // black
@@ -290,38 +289,29 @@ function formatTextChatMessage(text) {
         "9": "#bf1238"  // dark red
     };
 
-    return withLineBreaks.replace(/&lt;c([0-9A-Fa-f#]{1,8})&gt;([\s\S]*?)&lt;\/c&gt;/g, (match, colorCode, content) => {
-        // Normalize to uppercase
+    const escaped = escapeHTML(text).replace(/\n/g, "<br>");
+
+    // Match <cXX> but do not require closing </c>
+    return escaped.replace(/&lt;c([0-9A-Fa-f#]{1,8})&gt;/g, (match, colorCode) => {
         colorCode = colorCode.toUpperCase();
 
-        // Check for single digit preset
-        if (presetColors.hasOwnProperty(colorCode)) {
-            return `<span style="color:${presetColors[colorCode]}">${content}</span>`;
-        }
-
-        // Accept only 6-digit or 8-digit hex codes
-        if (/^[0-9A-F]{6}$/.test(colorCode)) {
-            // 6-digit RGB hex
-            return `<span style="color:#${colorCode}">${content}</span>`;
+        let color;
+        if (presetColors[colorCode]) {
+            color = presetColors[colorCode];
+        } else if (/^[0-9A-F]{6}$/.test(colorCode)) {
+            color = `#${colorCode}`;
         } else if (/^[0-9A-F]{8}$/.test(colorCode)) {
-            // 8-digit ARGB hex: AARRGGBB
-            // Parse alpha and convert to CSS rgba()
-            const alphaHex = colorCode.slice(0, 2);
-            const rHex = colorCode.slice(2, 4);
-            const gHex = colorCode.slice(4, 6);
-            const bHex = colorCode.slice(6, 8);
-
-            const alpha = parseInt(alphaHex, 16) / 255;
-            const r = parseInt(rHex, 16);
-            const g = parseInt(gHex, 16);
-            const b = parseInt(bHex, 16);
-
-            return `<span style="color:rgba(${r},${g},${b},${alpha.toFixed(2)})">${content}</span>`;
+            const alpha = parseInt(colorCode.slice(0, 2), 16) / 255;
+            const r = parseInt(colorCode.slice(2, 4), 16);
+            const g = parseInt(colorCode.slice(4, 6), 16);
+            const b = parseInt(colorCode.slice(6, 8), 16);
+            color = `rgba(${r},${g},${b},${alpha.toFixed(2)})`;
+        } else {
+            color = null;
         }
 
-        // Invalid code: remove tags but keep content
-        return content;
-    });
+        return color ? `<span style="color:${color}">` : "";
+    }).replace(/&lt;\/c&gt;/g, "</span>");
 }
 
 function formatTextNoFormat(text) {
