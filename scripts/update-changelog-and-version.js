@@ -12,7 +12,7 @@ fetch('changelog.json')
                 box.innerHTML = `
                     <div class="update-box-date">${entry.date}</div>
                     <h3 class="update-box-title">${entry.version} — ${entry.title}</h3>
-                    <p class="update-box-desc">${entry.description}</p>
+                    <p class="update-box-desc">${entry.description.replace(/\n/g, '<br>')}</p>
                 `;
 
                 container.appendChild(box);
