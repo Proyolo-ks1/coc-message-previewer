@@ -360,30 +360,34 @@ function handleInputChange() {
     updatePreview();
 };
 
-const loadedPreviews = {}; // cache loaded previews
+const loadedPreviews = {}; // global cache
 
 // Preload everything on page load
 function preloadAllPreviews() {
     const types = Object.keys(charLimits);
-    const promises = types.map(messageType =>
-        fetch(`preview-files/${messageType}.html`)
+
+    const promises = types.map(messageType => {
+        loadedPreviews[messageType] = {};
+
+        const htmlPromise = fetch(`preview-files/${messageType}.html`)
             .then(res => res.text())
             .then(html => {
-                loadedPreviews[messageType] = { html };
+                loadedPreviews[messageType].html = html;
+            });
 
-                // CSS HEAD check
-                fetch(`preview-files/${messageType}.css`, { method: 'HEAD' })
-                    .then(res => {
-                        if (res.ok) loadedPreviews[messageType].cssHref = `preview-files/${messageType}.css`;
-                    });
+        const cssPromise = fetch(`preview-files/${messageType}.css`, { method: 'HEAD' })
+            .then(res => {
+                if (res.ok) loadedPreviews[messageType].cssHref = `preview-files/${messageType}.css`;
+            });
 
-                // JS HEAD check
-                fetch(`preview-files/${messageType}.js`, { method: 'HEAD' })
-                    .then(res => {
-                        if (res.ok) loadedPreviews[messageType].jsPath = `preview-files/${messageType}.js`;
-                    });
-            })
-    );
+        const jsPromise = fetch(`preview-files/${messageType}.js`, { method: 'HEAD' })
+            .then(res => {
+                if (res.ok) loadedPreviews[messageType].jsPath = `preview-files/${messageType}.js`;
+            });
+
+        return Promise.all([htmlPromise, cssPromise, jsPromise]);
+    });
+
     return Promise.all(promises);
 }
 
